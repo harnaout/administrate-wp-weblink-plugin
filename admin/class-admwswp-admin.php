@@ -62,9 +62,9 @@ class Admwswp_Admin {
 	public function acfInit() {
 		if (function_exists('acf_add_options_page')):
 		    acf_add_options_page(array(
-		        'page_title' => 'Weblink2 - settings',
-		        'menu_title' => 'Weblink2 - settings',
-		        'menu_slug' => 'weblink_settings',
+		        'page_title' => 'Admininstrate Shortcodes',
+		        'menu_title' => 'Admininstrate Shortcodes',
+		        'menu_slug' => 'adminstrate_shortcodes',
 		        'capability' => 'edit_posts',
 		        'redirect' => false,
 		        'icon_url' => 'dashicons-admin-settings',
@@ -74,16 +74,54 @@ class Admwswp_Admin {
 
 	public function weblinkWidget($attr) {
 
-		$type = $attr['widget_type'];
+		$type = $attr['type'];
 		switch ($type) {
 			case 'Basket':
 			case 'Cart':
 			case 'SearchBar':
 			case 'CategoryDropdown':
-				return "[weblink-widget widget_type='$type']";
+				return "[administrate-widget type='$type']";
 				break;
 
 			default:
+
+				switch ($type) {
+					case 'Catalogue':
+						unset($attr['course']);
+						unset($attr['path']);
+						unset($attr['location']);
+						unset($attr['to_date']);
+						unset($attr['from_date']);
+						break;
+					case 'CourseDetails':
+						unset($attr['catalogue_type']);
+						unset($attr['path']);
+						unset($attr['location']);
+						unset($attr['to_date']);
+						unset($attr['from_date']);
+						break;
+					case 'PathDetails':
+						unset($attr['catalogue_type']);
+						unset($attr['course']);
+						unset($attr['location']);
+						unset($attr['to_date']);
+						unset($attr['from_date']);
+						break;
+					case 'EventList':
+						unset($attr['catalogue_type']);
+						unset($attr['course']);
+						unset($attr['path']);
+						break;
+					case 'Category':
+						unset($attr['catalogue_type']);
+						unset($attr['course']);
+						unset($attr['path']);
+						unset($attr['location']);
+						unset($attr['to_date']);
+						unset($attr['from_date']);
+						break;
+				}
+
 				$args = array();
 				foreach ($attr as $key => $value) {
 					if ($value) {
@@ -92,7 +130,7 @@ class Admwswp_Admin {
 				}
 
 				$shortcodeAttributes = implode(' ', $args);
-				return "[weblink-widget $shortcodeAttributes]";
+				return "[administrate-widget $shortcodeAttributes]";
 				break;
 		}
 
@@ -122,7 +160,7 @@ class Admwswp_Admin {
 	            'editor_script' => $this->plugin_name . 'editor-blocks',
 	            'render_callback' => array($this , 'weblinkWidget'),
 	            'attributes' => array(
-	            	'widget_type' => array(
+	            	'type' => array(
 	            		'type' => 'string',
 	            		'default' => 'Catalogue'
 	            	),
@@ -156,19 +194,19 @@ class Admwswp_Admin {
 	            	),
 	            	'date_filter' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showDateFilter', 'options')
 	            	),
 	            	'location_filter' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showLocationFilter', 'options')
 	            	),
 	            	'course_filter' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showCourseFilter', 'options')
 	            	),
 	            	'category_filter' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showCategoryFilter', 'options')
 	            	),
 	            	'event_list_order_field' => array(
 	            		'type' => 'string',
@@ -178,65 +216,65 @@ class Admwswp_Admin {
 	            		'type' => 'string',
 	            		'default' => ''
 	            	),
-	            	'title_column' => array(
+	            	'event_title' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showTitleColumn', 'options')
 	            	),
-	            	'location_column' => array(
+	            	'event_location' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showLocationColumn', 'options')
 	            	),
-	            	'venue_column' => array(
+	            	'event_venue' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showVenueColumn', 'options')
 	            	),
-	            	'start_date_column' => array(
+	            	'event_start_date' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showStartDateColumn', 'options')
 	            	),
-	            	'duration_column' => array(
+	            	'event_duration' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field(' showDurationColumn', 'options')
 	            	),
-	            	'time_column' => array(
+	            	'event_time' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showTimeColumn', 'options')
 	            	),
-	            	'places_remaining_column' => array(
+	            	'event_places_remaining' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showPlacesRemainingColumn', 'options')
 	            	),
-	            	'price_column' => array(
+	            	'event_price' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showPriceColumn', 'options')
 	            	),
-	            	'add_to_cart_column' => array(
+	            	'event_addtocart' => array(
 	            		'type' => 'bool',
-	            		'default' => true
+	            		'default' => get_field('showAddToCartColumn', 'options')
 	            	),
-	            	'classroom_start_date_column' => array(
+	            	'classroom_start_date' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showClassroomStartDateColumn', 'options')
 	            	),
-	            	'classroom_duration_column' => array(
+	            	'classroom_duration' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showClassroomDurationColumn', 'options')
 	            	),
-	            	'classroom_time_column' => array(
+	            	'classroom_time' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showClassroomTimeColumn', 'options')
 	            	),
-	            	'lms_start_date_column' => array(
+	            	'lms_start_date' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showLmsStartDateColumn', 'options')
 	            	),
-	            	'lms_duration_column' => array(
+	            	'lms_duration' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showLmsDurationColumn', 'options')
 	            	),
-	            	'lms_time_column' => array(
+	            	'lms_time' => array(
 	            		'type' => 'bool',
-	            		'default' => false
+	            		'default' => get_field('showLmsTimeColumn', 'options')
 	            	),
 	            )
 	        )

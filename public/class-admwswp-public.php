@@ -63,7 +63,7 @@ class Admwswp_Public {
 	    extract(
 	        shortcode_atts(
 	            array(
-	                'widget_type' => '',
+	                'type' => '',
 	                'category' => '',
 	                'path' => '',
 	                'course' => '',
@@ -77,28 +77,28 @@ class Admwswp_Public {
 	                'category_filter' => false,
 	                'event_list_order_field' => '',
 	                'event_list_order_direction' => '',
-	                'title_column' => false,
-	                'location_column' => false,
-	                'venue_column' => false,
-	                'start_date_column' => false,
-	                'duration_column' => false,
-	                'time_column' => false,
-	                'places_remaining_column' => false,
-	                'price_column' => false,
-	                'add_to_cart_column' => false,
-	                'classroom_start_date_column' => false,
-	                'classroom_duration_column' => false,
-	                'classroom_time_column' => false,
-	                'lms_start_date_column' => false,
-	                'lms_duration_column' => false,
-	                'lms_time_column' => false,
+	                'event_title' => false,
+	                'event_location' => false,
+	                'event_venue' => false,
+	                'event_start_date' => false,
+	                'event_duration' => false,
+	                'event_time' => false,
+	                'event_places_remaining' => false,
+	                'event_price' => false,
+	                'event_addtocart' => false,
+	                'classroom_start_date' => false,
+	                'classroom_duration' => false,
+	                'classroom_time' => false,
+	                'lms_start_date' => false,
+	                'lms_duration' => false,
+	                'lms_time' => false,
 	            ),
 	        $attr)
 	    );
 
 	    $webLinkArgs = array();
 
-	    switch ($widget_type) {
+	    switch ($type) {
 	        case 'PathDetails':
 	            if ($path) {
 	                $webLinkArgs['id'] = $path;
@@ -169,109 +169,109 @@ class Admwswp_Public {
 	                $webLinkArgs['eventListOrder']['direction'] = $event_list_order_direction;
 	            }
 
-	            if (!$title_column) {
+	            if (!$event_title) {
 	                $webLinkArgs['showTitleColumn'] = get_field('showTitleColumn', 'options');
 	            } else {
-	                $title_column = ($title_column === 'true') ? true : false;
-	                $webLinkArgs['showTitleColumn'] = $title_column;
+	                $event_title = ($event_title === 'true') ? true : false;
+	                $webLinkArgs['showTitleColumn'] = $event_title;
 	            }
 
-	            if (!$location_column) {
+	            if (!$event_location) {
 	                $webLinkArgs['showLocationColumn'] = get_field('showLocationColumn', 'options');
 	            } else {
-	                $location_column = ($location_column === 'true') ? true : false;
-	                $webLinkArgs['showLocationColumn'] = $location_column;
+	                $event_location = ($event_location === 'true') ? true : false;
+	                $webLinkArgs['showLocationColumn'] = $event_location;
 	            }
 
-	            if (!$venue_column) {
+	            if (!$event_venue) {
 	                $webLinkArgs['showVenueColumn'] = get_field('showVenueColumn', 'options');
 	            } else {
-	                $venue_column = ($venue_column === 'true') ? true : false;
-	                $webLinkArgs['showVenueColumn'] = $venue_column;
+	                $event_venue = ($event_venue === 'true') ? true : false;
+	                $webLinkArgs['showVenueColumn'] = $event_venue;
 	            }
 
-	            if (!$start_date_column) {
+	            if (!$event_start_date) {
 	                $webLinkArgs['showStartDateColumn'] = get_field('showStartDateColumn', 'options');
 	            } else {
-	                $start_date_column = ($start_date_column === 'true') ? true : false;
-	                $webLinkArgs['showStartDateColumn'] = $start_date_column;
+	                $event_start_date = ($event_start_date === 'true') ? true : false;
+	                $webLinkArgs['showStartDateColumn'] = $event_start_date;
 	            }
 
-	            if (!$duration_column) {
+	            if (!$event_duration) {
 	                $webLinkArgs['showDurationColumn'] = get_field('showDurationColumn', 'options');
 	            } else {
-	                $duration_column = ($duration_column === 'true') ? true : false;
-	                $webLinkArgs['showDurationColumn'] = $duration_column;
+	                $event_duration = ($event_duration === 'true') ? true : false;
+	                $webLinkArgs['showDurationColumn'] = $event_duration;
 	            }
 
-	            if (!$time_column) {
+	            if (!$event_time) {
 	                $webLinkArgs['showTimeColumn'] = get_field('showTimeColumn', 'options');
 	            } else {
-	                $time_column = ($time_column === 'true') ? true : false;
-	                $webLinkArgs['showTimeColumn'] = $time_column;
+	                $event_time = ($event_time === 'true') ? true : false;
+	                $webLinkArgs['showTimeColumn'] = $event_time;
 	            }
 
-	            if (!$places_remaining_column) {
+	            if (!$event_places_remaining) {
 	                $webLinkArgs['showPlacesRemainingColumn'] = get_field('showPlacesRemainingColumn', 'options');
 	            } else {
-	                $places_remaining_column = ($places_remaining_column === 'true') ? true : false;
-	                $webLinkArgs['showPlacesRemainingColumn'] = $places_remaining_column;
+	                $event_places_remaining = ($event_places_remaining === 'true') ? true : false;
+	                $webLinkArgs['showPlacesRemainingColumn'] = $event_places_remaining;
 	            }
 
-	            if (!$price_column) {
+	            if (!$event_price) {
 	                $webLinkArgs['showPriceColumn'] = get_field('showPriceColumn', 'options');
 	            } else {
-	                $price_column = ($price_column === 'true') ? true : false;
-	                $webLinkArgs['showPriceColumn'] = $price_column;
+	                $event_price = ($event_price === 'true') ? true : false;
+	                $webLinkArgs['showPriceColumn'] = $event_price;
 	            }
 
-	            if (!$add_to_cart_column) {
+	            if (!$event_addtocart) {
 	                $webLinkArgs['showAddToCartColumn'] = get_field('showAddToCartColumn', 'options');
 	            } else {
-	                $add_to_cart_column = ($add_to_cart_column === 'true') ? true : false;
-	                $webLinkArgs['showAddToCartColumn'] = $add_to_cart_column;
+	                $event_addtocart = ($event_addtocart === 'true') ? true : false;
+	                $webLinkArgs['showAddToCartColumn'] = $event_addtocart;
 	            }
 
-	            if (!$classroom_start_date_column) {
+	            if (!$classroom_start_date) {
 	                $webLinkArgs['showClassroomStartDateColumn'] = get_field('showClassroomStartDateColumn', 'options');
 	            } else {
-	                $classroom_start_date_column = ($classroom_start_date_column === 'true') ? true : false;
-	                $webLinkArgs['showClassroomStartDateColumn'] = $classroom_start_date_column;
+	                $classroom_start_date = ($classroom_start_date === 'true') ? true : false;
+	                $webLinkArgs['showClassroomStartDateColumn'] = $classroom_start_date;
 	            }
 
-	            if (!$classroom_duration_column) {
+	            if (!$classroom_duration) {
 	                $webLinkArgs['showClassroomDurationColumn'] = get_field('showClassroomDurationColumn', 'options');
 	            } else {
-	                $classroom_duration_column = ($classroom_duration_column === 'true') ? true : false;
-	                $webLinkArgs['showClassroomDurationColumn'] = $classroom_duration_column;
+	                $classroom_duration = ($classroom_duration === 'true') ? true : false;
+	                $webLinkArgs['showClassroomDurationColumn'] = $classroom_duration;
 	            }
 
-	            if (!$classroom_time_column) {
+	            if (!$classroom_time) {
 	                $webLinkArgs['showClassroomTimeColumn'] = get_field('showClassroomTimeColumn', 'options');
 	            } else {
-	                $classroom_time_column = ($classroom_time_column === 'true') ? true : false;
-	                $webLinkArgs['showClassroomTimeColumn'] = $classroom_time_column;
+	                $classroom_time = ($classroom_time === 'true') ? true : false;
+	                $webLinkArgs['showClassroomTimeColumn'] = $classroom_time;
 	            }
 
-	            if (!$lms_start_date_column) {
+	            if (!$lms_start_date) {
 	                $webLinkArgs['showLmsStartDateColumn'] = get_field('showLmsStartDateColumn', 'options');
 	            } else {
-	                $lms_start_date_column = ($lms_start_date_column === 'true') ? true : false;
-	                $webLinkArgs['showLmsStartDateColumn'] = $lms_start_date_column;
+	                $lms_start_date = ($lms_start_date === 'true') ? true : false;
+	                $webLinkArgs['showLmsStartDateColumn'] = $lms_start_date;
 	            }
 
-	            if (!$lms_duration_column) {
+	            if (!$lms_duration) {
 	                $webLinkArgs['showLmsDurationColumn'] = get_field('showLmsDurationColumn', 'options');
 	            } else {
-	                $lms_duration_column = ($lms_duration_column === 'true') ? true : false;
-	                $webLinkArgs['showLmsDurationColumn'] = $lms_duration_column;
+	                $lms_duration = ($lms_duration === 'true') ? true : false;
+	                $webLinkArgs['showLmsDurationColumn'] = $lms_duration;
 	            }
 
-	            if (!$lms_time_column) {
+	            if (!$lms_time) {
 	                $webLinkArgs['showLmsTimeColumn'] = get_field('showLmsTimeColumn', 'options');
 	            } else {
-	                $lms_time_column = ($lms_time_column === 'true') ? true : false;
-	                $webLinkArgs['showLmsTimeColumn'] = $lms_time_column;
+	                $lms_time = ($lms_time === 'true') ? true : false;
+	                $webLinkArgs['showLmsTimeColumn'] = $lms_time;
 	            }
 	            break;
 	        default:
@@ -279,9 +279,9 @@ class Admwswp_Public {
 	            break;
 	    }
 
-	    $widgetId = "weblink-" . $widget_type . "-" . time();
-	    $html = "<div id='weblink-widget-container' class='weblink-$widget_type-container'>";
-	    $html .= "<div id='$widgetId' class='weblink-$widget_type'>";
+	    $widgetId = "weblink-" . $type . "-" . time();
+	    $html = "<div id='weblink-widget-container' class='weblink-$type-container'>";
+	    $html .= "<div id='$widgetId' class='weblink-$type'>";
 	    $html .= "<div class='fa-3x text-center'>";
 	    $html .= "<i class='fas fa-circle-notch fa-spin'></i>";
 	    $html .= "</div>";
@@ -294,7 +294,7 @@ class Admwswp_Public {
 	    $html .= 'webLink.mount(
 	        document.getElementById(
 	        "' . $widgetId . '"),
-	        "'. $widget_type . '"';
+	        "'. $type . '"';
 	    if ($webLinkArgs) {
 	        $webLinkArgsJson = json_encode($webLinkArgs);
 	        $html .= "," . $webLinkArgsJson;

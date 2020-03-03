@@ -3,7 +3,7 @@ if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array(
   'key' => 'group_5e552914d92cc',
-  'title' => 'Weblink 2 Options',
+  'title' => 'Admin Short-codes Options',
   'fields' => array(
     array(
       'key' => 'field_5e5536716bf2a',
@@ -622,21 +622,23 @@ acf_add_local_field_group(array(
         'class' => '',
         'id' => '',
       ),
-      'message' => '[weblink-widget widget_type="Basket"]
-[weblink-widget widget_type="Cart"]
+      'message' => '[administrate-widget type="Basket"]
+[administrate-widget type="Cart"]
 
-[weblink-widget widget_type="Category"]
-[weblink-widget widget_type="CategoryDropdown"]
+[administrate-widget type="Category"]
+[administrate-widget type="CategoryDropdown"]
 
-[weblink-widget widget_type="SearchBar"]
-[weblink-widget widget_type="Catalogue" category="ID"]
+[administrate-widget type="SearchBar"]
+[administrate-widget type="Catalogue" category="ID"]
 
-[weblink-widget widget_type="CourseDetails" course="ID"]
-[weblink-widget widget_type="PathDetails" path="ID"]
+[administrate-widget type="CourseDetails" course="ID"]
+[administrate-widget type="PathDetails" path="ID"]
 
-[weblink-widget widget_type="EventList"]
-[weblink-widget widget_type="EventList" category="ID"]
-[weblink-widget widget_type="EventList" date_filter="false" location_filter="false" course_filter="false" category_filter="false"]',
+[administrate-widget type="EventList"]
+[administrate-widget type="EventList" category="ID"]
+[administrate-widget type="EventList" date_filter="false" location_filter="false" course_filter="false" category_filter="false"]
+
+[administrate-widget type=\'Catalogue\' catalogue_type=\'course\' date_filter=\'true\' location_filter=\'true\' course_filter=\'true\' category_filter=\'true\' event_title=\'true\' event_location=\'true\' event_venue=\'true\' event_start_date=\'true\' event_duration=\'true\' event_time=\'true\' event_places_remaining=\'true\' event_price=\'true\' event_addtocart=\'true\' classroom_start_date=\'true\' classroom_duration=\'true\' classroom_time=\'true\' lms_start_date=\'true\' lms_duration=\'true\' lms_time=\'true\']',
       'new_lines' => 'wpautop',
       'esc_html' => 0,
     ),
@@ -646,7 +648,7 @@ acf_add_local_field_group(array(
       array(
         'param' => 'options_page',
         'operator' => '==',
-        'value' => 'weblink_settings',
+        'value' => 'adminstrate_shortcodes',
       ),
     ),
   ),

@@ -13,7 +13,6 @@ const {
 	PanelBody,
 	PanelRow
 } = wp.components; //WordPress form inputs and server-side renderer
-const {withState} = wp.compose;
 
 registerBlockType(
 	'admwswp/weblink',
@@ -22,17 +21,6 @@ registerBlockType(
   	description: __('Display Weblink2 Widgets'),
   	icon: 'welcome-widgets-menus',
   	category: __('widgets'),
-  	// attributes: {
-  	// 	widget_type: {
-  	// 	  default: '',
-  	// 	},
-  	// 	catalogue_type: {
-  	// 	  default: '',
-  	// 	},
-  	// 	category: {
-  	// 	  default: '',
-  	// 	}
-  	// },
   	edit(props){
 
   			const attributes =  props.attributes;
@@ -61,10 +49,66 @@ registerBlockType(
 										className: 'admwswp-widget-type',
 										label: __('Widget Type'),
 										onChange: (value) => {
-											setAttributes({widget_type: value});
+											setAttributes({type: value});
+
+											var catalogueType = jQuery('.admwswp-catalogue-type');
+											var category = jQuery('.admwswp-catalogue-category');
+											var path = jQuery('.admwswp-path');
+											var course = jQuery('.admwswp-course');
+											var location = jQuery('.admwswp-location');
+											var date = jQuery('.admwswp-date_range');
+											var sorting = jQuery('.admwswp-sorting');
+											var filters = jQuery('.admwswp-filters');
+											var columns = jQuery('.admwswp-columns');
+
+											catalogueType.addClass('hidden');
+											category.addClass('hidden');
+											path.addClass('hidden');
+											course.addClass('hidden');
+											location.addClass('hidden');
+											date.addClass('hidden');
+											sorting.addClass('hidden');
+											filters.addClass('hidden');
+											columns.addClass('hidden');
+
+											if ('Catalogue' === value) {
+												catalogueType.removeClass('hidden');
+												category.removeClass('hidden');
+												sorting.removeClass('hidden');
+												filters.removeClass('hidden');
+												columns.removeClass('hidden');
+											}
+
+											if ('CourseDetails' === value) {
+												course.removeClass('hidden');
+												sorting.removeClass('hidden');
+												filters.removeClass('hidden');
+												columns.removeClass('hidden');
+											}
+
+											if ('PathDetails' === value) {
+												path.removeClass('hidden');
+											}
+
+											if ('EventList' === value) {
+												course.removeClass('hidden');
+												location.removeClass('hidden');
+												category.removeClass('hidden');
+												date.removeClass('hidden');
+												sorting.removeClass('hidden');
+												filters.removeClass('hidden');
+												columns.removeClass('hidden');
+											}
+
+											if ('Category' === value) {
+												sorting.removeClass('hidden');
+												filters.removeClass('hidden');
+												columns.removeClass('hidden');
+											}
+
 										},
-										value: attributes.widget_type,
-										selected: attributes.catalogue_type,
+										value: attributes.type,
+										selected: attributes.type,
 										options: [
 											{value: 'Catalogue', label: 'Catalogue'},
 											{value: 'CourseDetails', label: 'Course Details'},
@@ -90,9 +134,33 @@ registerBlockType(
 										selected: attributes.catalogue_type,
 										options: [
 											{value: 'All', label: 'All'},
-											{value: 'Courses', label: 'Courses'},
-											{value: 'Paths', label: 'Paths'},
+											{value: 'course', label: 'Courses'},
+											{value: 'path', label: 'Paths'},
 										],
+									}
+								),
+								createElement(
+									TextControl,
+									{
+										className: 'admwswp-course hidden',
+										value: attributes.course,
+										label: __('Course'),
+										onChange: (value) => {
+											setAttributes({course: value});
+										},
+										type: 'text',
+									}
+								),
+								createElement(
+									TextControl,
+									{
+										className: 'admwswp-location hidden',
+										value: attributes.location,
+										label: __('Location'),
+										onChange: (value) => {
+											setAttributes({location: value});
+										},
+										type: 'text',
 									}
 								),
 								createElement(
@@ -110,7 +178,7 @@ registerBlockType(
 								createElement(
 									TextControl,
 									{
-										className: 'admwswp-path',
+										className: 'admwswp-path hidden',
 										value: attributes.path,
 										label: __('Path'),
 										onChange: (value) => {
@@ -120,97 +188,36 @@ registerBlockType(
 									}
 								),
 								createElement(
-									TextControl,
-									{
-										className: 'admwswp-course',
-										value: attributes.course,
-										label: __('Course'),
-										onChange: (value) => {
-											setAttributes({course: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-location',
-										value: attributes.location,
-										label: __('Location'),
-										onChange: (value) => {
-											setAttributes({location: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-to_date',
-										value: attributes.to_date,
-										label: __('To Date'),
-										onChange: (value) => {
-											setAttributes({to_date: value});
-										},
-										type: 'date',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-from_date',
-										value: attributes.from_date,
-										label: __('From Date'),
-										onChange: (value) => {
-											setAttributes({from_date: value});
-										},
-										type: 'date',
-									}
-								),
-								// 'event_list_order_field' => '',
-								// 'event_list_order_direction' => '',
-								createElement(
 									PanelBody,
 									{
-										title: "Sorting",
+										title: "Set Date Range",
 										initialOpen: false,
-										className: 'admwswp-sorting',
-										icon: 'sort'
+										className: 'admwswp-date_range',
+										icon: 'clock'
 									},
 									[
 										createElement(
-											SelectControl,
+											TextControl,
 											{
-												className: 'admwswp-sort-field',
-												label: __('Event List Order Field'),
+												className: 'admwswp-to_date',
+												value: attributes.to_date,
+												label: __('To Date'),
 												onChange: (value) => {
-													setAttributes({event_list_order_field: value});
+													setAttributes({to_date: value});
 												},
-												value: attributes.event_list_order_field,
-												selected: attributes.event_list_order_field,
-												options: [
-													{value: 'title', label: 'Title'},
-													{value: 'locationName', label: 'Location Name'},
-													{value: 'start', label: 'Start'},
-													{value: 'classroomStart ', label: 'Classroom Start'},
-													{value: 'lmsStart ', label: 'LMS Start'},
-												],
+												type: 'date',
 											}
 										),
 										createElement(
-											RadioControl,
+											TextControl,
 											{
-												className: 'admwswp-sort-direction',
-												help: __('Event List Order Direction'),
+												className: 'admwswp-from_date',
+												value: attributes.from_date,
+												label: __('From Date'),
 												onChange: (value) => {
-													setAttributes({event_list_order_direction: value});
+													setAttributes({from_date: value});
 												},
-												value: attributes.event_list_order_direction,
-												selected: attributes.event_list_order_direction,
-												options: [
-													{value: 'asc', label: 'ASC'},
-													{value: 'desc', label: 'DESC'},
-												],
+												type: 'date',
 											}
 										),
 									]
@@ -218,7 +225,7 @@ registerBlockType(
 								createElement(
 									PanelBody,
 									{
-										title: "Filters",
+										title: "Events List Filters",
 										initialOpen: false,
 										className: 'admwswp-filters',
 										icon: 'filter'
@@ -277,7 +284,53 @@ registerBlockType(
 								createElement(
 									PanelBody,
 									{
-										title: "Columns",
+										title: "Events List Sorting",
+										initialOpen: false,
+										className: 'admwswp-sorting',
+										icon: 'sort'
+									},
+									[
+										createElement(
+											SelectControl,
+											{
+												className: 'admwswp-sort-field',
+												label: __('Event List Order Field'),
+												onChange: (value) => {
+													setAttributes({event_list_order_field: value});
+												},
+												value: attributes.event_list_order_field,
+												selected: attributes.event_list_order_field,
+												options: [
+													{value: 'title', label: 'Title'},
+													{value: 'locationName', label: 'Location Name'},
+													{value: 'start', label: 'Start'},
+													{value: 'classroomStart ', label: 'Classroom Start'},
+													{value: 'lmsStart ', label: 'LMS Start'},
+												],
+											}
+										),
+										createElement(
+											RadioControl,
+											{
+												className: 'admwswp-sort-direction',
+												help: __('Event List Order Direction'),
+												onChange: (value) => {
+													setAttributes({event_list_order_direction: value});
+												},
+												value: attributes.event_list_order_direction,
+												selected: attributes.event_list_order_direction,
+												options: [
+													{value: 'asc', label: 'ASC'},
+													{value: 'desc', label: 'DESC'},
+												],
+											}
+										),
+									]
+								),
+								createElement(
+									PanelBody,
+									{
+										title: "Events List Columns",
 										initialOpen: false,
 										className: 'admwswp-columns',
 										icon: 'columns'
@@ -286,11 +339,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-title_column',
+												className: 'admwswp-event_title',
 												label: __('Event Title'),
-												checked: attributes.title_column,
+												checked: attributes.event_title,
 												onChange: (value) => {
-													setAttributes({title_column: value});
+													setAttributes({event_title: value});
 												},
 												type: 'bool',
 											}
@@ -298,11 +351,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-location_column',
+												className: 'admwswp-event_location',
 												label: __('Location'),
-												checked: attributes.location_column,
+												checked: attributes.event_location,
 												onChange: (value) => {
-													setAttributes({location_column: value});
+													setAttributes({event_location: value});
 												},
 												type: 'bool',
 											}
@@ -310,11 +363,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-venue_column',
+												className: 'admwswp-event_venue',
 												label: __('Venue'),
-												checked: attributes.venue_column,
+												checked: attributes.event_venue,
 												onChange: (value) => {
-													setAttributes({venue_column: value});
+													setAttributes({event_venue: value});
 												},
 												type: 'bool',
 											}
@@ -322,11 +375,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-start_date_column',
+												className: 'admwswp-event_start_date',
 												label: __('Start Date'),
-												checked: attributes.start_date_column,
+												checked: attributes.event_start_date,
 												onChange: (value) => {
-													setAttributes({start_date_column: value});
+													setAttributes({event_start_date: value});
 												},
 												type: 'bool',
 											}
@@ -334,11 +387,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-duration_column',
+												className: 'admwswp-event_duration',
 												label: __('Duration'),
-												checked: attributes.duration_column,
+												checked: attributes.event_duration,
 												onChange: (value) => {
-													setAttributes({duration_column: value});
+													setAttributes({event_duration: value});
 												},
 												type: 'bool',
 											}
@@ -346,11 +399,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-time_column',
+												className: 'admwswp-event_time',
 												label: __('Time'),
-												checked: attributes.time_column,
+												checked: attributes.event_time,
 												onChange: (value) => {
-													setAttributes({time_column: value});
+													setAttributes({event_time: value});
 												},
 												type: 'bool',
 											}
@@ -358,11 +411,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-places_remaining_column',
+												className: 'admwswp-event_places_remaining',
 												label: __('Remaining Places'),
-												checked: attributes.places_remaining_column,
+												checked: attributes.event_places_remaining,
 												onChange: (value) => {
-													setAttributes({places_remaining_column: value});
+													setAttributes({event_places_remaining: value});
 												},
 												type: 'bool',
 											}
@@ -370,11 +423,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-price_column',
+												className: 'admwswp-event_price',
 												label: __('Price'),
-												checked: attributes.price_column,
+												checked: attributes.event_price,
 												onChange: (value) => {
-													setAttributes({price_column: value});
+													setAttributes({event_price: value});
 												},
 												type: 'bool',
 											}
@@ -382,11 +435,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-add_to_cart_column',
+												className: 'admwswp-event_addtocart',
 												label: __('Add To Cart'),
-												checked: attributes.add_to_cart_column,
+												checked: attributes.event_addtocart,
 												onChange: (value) => {
-													setAttributes({add_to_cart_column: value});
+													setAttributes({event_addtocart: value});
 												},
 												type: 'bool',
 											}
@@ -394,11 +447,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-classroom_start_date_column',
+												className: 'admwswp-classroom_start_date',
 												label: __('Classroom Start Date'),
-												checked: attributes.classroom_start_date_column,
+												checked: attributes.classroom_start_date,
 												onChange: (value) => {
-													setAttributes({classroom_start_date_column: value});
+													setAttributes({classroom_start_date: value});
 												},
 												type: 'bool',
 											}
@@ -406,11 +459,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-classroom_duration_column',
+												className: 'admwswp-classroom_duration',
 												label: __('Classroom Duration'),
-												checked: attributes.classroom_duration_column,
+												checked: attributes.classroom_duration,
 												onChange: (value) => {
-													setAttributes({classroom_duration_column: value});
+													setAttributes({classroom_duration: value});
 												},
 												type: 'bool',
 											}
@@ -418,11 +471,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-classroom_time_column',
+												className: 'admwswp-classroom_time',
 												label: __('Classroom Time'),
-												checked: attributes.classroom_time_column,
+												checked: attributes.classroom_time,
 												onChange: (value) => {
-													setAttributes({classroom_time_column: value});
+													setAttributes({classroom_time: value});
 												},
 												type: 'bool',
 											}
@@ -430,11 +483,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-lms_start_date_column',
+												className: 'admwswp-lms_start_date',
 												label: __('LMS Start Date'),
-												checked: attributes.lms_start_date_column,
+												checked: attributes.lms_start_date,
 												onChange: (value) => {
-													setAttributes({lms_start_date_column: value});
+													setAttributes({lms_start_date: value});
 												},
 												type: 'bool',
 											}
@@ -442,11 +495,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-lms_duration_column',
+												className: 'admwswp-lms_duration',
 												label: __('LMS Duration'),
-												checked: attributes.lms_duration_column,
+												checked: attributes.lms_duration,
 												onChange: (value) => {
-													setAttributes({lms_duration_column: value});
+													setAttributes({lms_duration: value});
 												},
 												type: 'bool',
 											}
@@ -454,11 +507,11 @@ registerBlockType(
 										createElement(
 											ToggleControl,
 											{
-												className: 'admwswp-lms_time_column',
+												className: 'admwswp-lms_time',
 												label: __('LMS Time'),
-												checked: attributes.lms_time_column,
+												checked: attributes.lms_time,
 												onChange: (value) => {
-													setAttributes({lms_time_column: value});
+													setAttributes({lms_time: value});
 												},
 												type: 'bool',
 											}

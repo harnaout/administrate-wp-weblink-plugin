@@ -9,5 +9,5 @@
  * @subpackage Admwswp/includes
  *
  */
-//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/acf/weblink-settings.php';
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/acf/weblink-settings.php';
 
