@@ -14,13 +14,12 @@ The plugin exposes weblink functionality into WordPress short-codes, also it cre
 
 == Installation ==
 
-The plugin is not released on wordpress.org yet so if you need to use it please contact Adminitrate by sending us en email at support@getadministrate.com and we will send you a files needed to install the plugin.
+The plugin is not released on wordpress.org yet, so if you need to use it please contact Adminitrate by sending us en email at support@getadministrate.com and we will send you the files needed to install the plugin.
 
 Steps:
 
 1. Upload the zip files "admwswp.zip" to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-
 
 == Changelog ==
 
