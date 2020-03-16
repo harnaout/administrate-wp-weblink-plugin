@@ -139,7 +139,7 @@ class Admwswp_Admin
 
     public function webLinkBlockInit()
     {
-        if (!function_exists('register_block_type')) {
+        if (!function_exists('register_block_type') || !function_exists('get_field')) {
             return;
         }
 
