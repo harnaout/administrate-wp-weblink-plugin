@@ -37,7 +37,7 @@ if (! defined('WPINC')) {
  */
 define('ADMWSWP_VERSION', '1.0.0');
 define('ADMWSWP_TEXTDOMAIN', 'admwswp');
-define('ADMWSWP_PLUGIN_NAME', 'admwswp/admwswp.php');
+define('ADMWSWP_PLUGIN_NAME', 'administrate-wp-weblink-plugin/admwswp.php');
 // List of plugins separated by comas.
 define('DEPENDECY_PLUGINS', 'advanced-custom-fields-pro/acf.php,acf-timezone-picker/acf-timezone_picker.php');
 
