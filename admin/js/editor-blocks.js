@@ -101,95 +101,106 @@ registerBlockType(
 							{},
 							[
 								createElement(
-									SelectControl,
+									PanelBody,
 									{
-										className: 'admwswp-widget-type',
-										label: __('Widget Type'),
-										onChange: (value) => {
-											setAttributes({type: value});
+										title: "Widget Main Setup",
+										initialOpen: true,
+										className: 'admwswp-widget-info',
+										icon: 'admin-generic'
+									},
+									[
+										createElement(
+											SelectControl,
+											{
+												className: 'admwswp-widget-type',
+												label: __('Widget Type'),
+												onChange: (value) => {
+													setAttributes({type: value});
 
-											updateSections(value);
+													updateSections(value);
 
-										},
-										value: attributes.type,
-										selected: attributes.type,
-										options: [
-											{value: 'Catalogue', label: 'Catalogue'},
-											{value: 'CourseDetails', label: 'Course Details'},
-											{value: 'PathDetails', label: 'Path Details'},
-											{value: 'Basket', label: 'Basket'},
-											{value: 'EventList', label: 'Even tList'},
-											{value: 'Category', label: 'Category'},
-											{value: 'Cart', label: 'Cart'},
-											{value: 'SearchBar', label: 'Search Bar'},
-											{value: 'CategoryDropdown', label: 'Category Dropdown'},
-										],
-									}
-								),
-								createElement(
-									RadioControl,
-									{
-										className: 'admwswp-catalogue-type',
-										help: __('Select Catalogue Type'),
-										onChange: (value) => {
-											setAttributes({catalogue_type: value});
-										},
-										value: attributes.catalogue_type,
-										selected: attributes.catalogue_type,
-										options: [
-											{value: 'All', label: 'All'},
-											{value: 'course', label: 'Courses'},
-											{value: 'path', label: 'Paths'},
-										],
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-course hidden',
-										value: attributes.course,
-										label: __('Course'),
-										onChange: (value) => {
-											setAttributes({course: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-location hidden',
-										value: attributes.location,
-										label: __('Location'),
-										onChange: (value) => {
-											setAttributes({location: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-catalogue-category',
-										value: attributes.category,
-										label: __('Category ID'),
-										onChange: (value) => {
-											setAttributes({category: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-path hidden',
-										value: attributes.path,
-										label: __('Path'),
-										onChange: (value) => {
-											setAttributes({path: value});
-										},
-										type: 'text',
-									}
+												},
+												value: attributes.type,
+												selected: attributes.type,
+												options: [
+													{value: 'Catalogue', label: 'Catalogue'},
+													{value: 'CourseDetails', label: 'Course Details'},
+													{value: 'PathDetails', label: 'Path Details'},
+													{value: 'Basket', label: 'Basket'},
+													{value: 'EventList', label: 'Even tList'},
+													{value: 'Category', label: 'Category'},
+													{value: 'Cart', label: 'Cart'},
+													{value: 'SearchBar', label: 'Search Bar'},
+													{value: 'CategoryDropdown', label: 'Category Dropdown'},
+												],
+											}
+										),
+										createElement(
+											SelectControl,
+											{
+												className: 'admwswp-catalogue-type',
+												label: __('Select Catalogue Type'),
+												onChange: (value) => {
+													setAttributes({catalogue_type: value});
+												},
+												value: attributes.catalogue_type,
+												selected: attributes.catalogue_type,
+												options: [
+													{value: 'All', label: 'All'},
+													{value: 'course', label: 'Courses'},
+													{value: 'path', label: 'Paths'},
+												],
+											}
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-course hidden',
+												value: attributes.course,
+												label: __('Course'),
+												onChange: (value) => {
+													setAttributes({course: value});
+												},
+												type: 'text',
+											}
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-location hidden',
+												value: attributes.location,
+												label: __('Location'),
+												onChange: (value) => {
+													setAttributes({location: value});
+												},
+												type: 'text',
+											}
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-catalogue-category',
+												value: attributes.category,
+												label: __('Category ID'),
+												onChange: (value) => {
+													setAttributes({category: value});
+												},
+												type: 'text',
+											}
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-path hidden',
+												value: attributes.path,
+												label: __('Path'),
+												onChange: (value) => {
+													setAttributes({path: value});
+												},
+												type: 'text',
+											}
+										),
+									]
 								),
 								createElement(
 									PanelBody,
