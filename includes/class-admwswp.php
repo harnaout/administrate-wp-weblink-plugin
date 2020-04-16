@@ -170,9 +170,9 @@ class Admwswp
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 
-        $this->loader->add_action('acf/init', $plugin_admin, 'acfInit');
+        $this->loader->add_action('init', $plugin_admin, 'webLinkSettingsInit', 10);
 
-        $this->loader->add_action('init', $plugin_admin, 'webLinkBlockInit');
+        $this->loader->add_action('init', $plugin_admin, 'webLinkBlockInit', 10);
 
         $this->loader->add_action('admin_init', 'Admwswp_Activator', 'pluginHasDependentPlugins');
     }
