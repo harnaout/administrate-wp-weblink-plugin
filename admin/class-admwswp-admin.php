@@ -60,7 +60,7 @@ class Admwswp_Admin
      *
      * @since    1.0.0
      */
-    public function acfInit()
+    public function webLinkSettingsInit()
     {
         if (function_exists('acf_add_options_page')) :
             acf_add_options_page(array(
@@ -331,12 +331,12 @@ class Admwswp_Admin
          * class.
          */
 
-        wp_enqueue_script(
-            $this->plugin_name,
-            plugin_dir_url(__FILE__) . 'js/admwswp-admin.js',
-            array( 'jquery' ),
-            $this->version,
-            false
-        );
+        // wp_enqueue_script(
+        //     $this->plugin_name,
+        //     plugin_dir_url(__FILE__) . 'js/admwswp-admin.js',
+        //     array( 'jquery' ),
+        //     $this->version,
+        //     false
+        // );
     }
 }

@@ -26,6 +26,63 @@ registerBlockType(
   			const attributes =  props.attributes;
   			const setAttributes =  props.setAttributes;
 
+				function updateSections(value) {
+		  			var catalogueType = jQuery('.admwswp-catalogue-type');
+						var category = jQuery('.admwswp-catalogue-category');
+						var path = jQuery('.admwswp-path');
+						var course = jQuery('.admwswp-course');
+						var location = jQuery('.admwswp-location');
+						var date = jQuery('.admwswp-date_range');
+						var sorting = jQuery('.admwswp-sorting');
+						var filters = jQuery('.admwswp-filters');
+						var columns = jQuery('.admwswp-columns');
+
+						catalogueType.addClass('hidden');
+						category.addClass('hidden');
+						path.addClass('hidden');
+						course.addClass('hidden');
+						location.addClass('hidden');
+						date.addClass('hidden');
+						sorting.addClass('hidden');
+						filters.addClass('hidden');
+						columns.addClass('hidden');
+
+						if ('Catalogue' === value) {
+							catalogueType.removeClass('hidden');
+							category.removeClass('hidden');
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+
+						if ('CourseDetails' === value) {
+							course.removeClass('hidden');
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+
+						if ('PathDetails' === value) {
+							path.removeClass('hidden');
+						}
+
+						if ('EventList' === value) {
+							course.removeClass('hidden');
+							location.removeClass('hidden');
+							category.removeClass('hidden');
+							date.removeClass('hidden');
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+
+						if ('Category' === value) {
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+				}
+
   			//Display block preview and UI
 				var editBlock = createElement(
 					'div',
@@ -51,60 +108,7 @@ registerBlockType(
 										onChange: (value) => {
 											setAttributes({type: value});
 
-											var catalogueType = jQuery('.admwswp-catalogue-type');
-											var category = jQuery('.admwswp-catalogue-category');
-											var path = jQuery('.admwswp-path');
-											var course = jQuery('.admwswp-course');
-											var location = jQuery('.admwswp-location');
-											var date = jQuery('.admwswp-date_range');
-											var sorting = jQuery('.admwswp-sorting');
-											var filters = jQuery('.admwswp-filters');
-											var columns = jQuery('.admwswp-columns');
-
-											catalogueType.addClass('hidden');
-											category.addClass('hidden');
-											path.addClass('hidden');
-											course.addClass('hidden');
-											location.addClass('hidden');
-											date.addClass('hidden');
-											sorting.addClass('hidden');
-											filters.addClass('hidden');
-											columns.addClass('hidden');
-
-											if ('Catalogue' === value) {
-												catalogueType.removeClass('hidden');
-												category.removeClass('hidden');
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
-											}
-
-											if ('CourseDetails' === value) {
-												course.removeClass('hidden');
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
-											}
-
-											if ('PathDetails' === value) {
-												path.removeClass('hidden');
-											}
-
-											if ('EventList' === value) {
-												course.removeClass('hidden');
-												location.removeClass('hidden');
-												category.removeClass('hidden');
-												date.removeClass('hidden');
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
-											}
-
-											if ('Category' === value) {
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
-											}
+											updateSections(value);
 
 										},
 										value: attributes.type,
@@ -199,11 +203,11 @@ registerBlockType(
 										createElement(
 											TextControl,
 											{
-												className: 'admwswp-to_date',
-												value: attributes.to_date,
-												label: __('To Date'),
+												className: 'admwswp-from_date',
+												value: attributes.from_date,
+												label: __('From Date'),
 												onChange: (value) => {
-													setAttributes({to_date: value});
+													setAttributes({from_date: value});
 												},
 												type: 'date',
 											}
@@ -211,11 +215,11 @@ registerBlockType(
 										createElement(
 											TextControl,
 											{
-												className: 'admwswp-from_date',
-												value: attributes.from_date,
-												label: __('From Date'),
+												className: 'admwswp-to_date',
+												value: attributes.to_date,
+												label: __('To Date'),
 												onChange: (value) => {
-													setAttributes({from_date: value});
+													setAttributes({to_date: value});
 												},
 												type: 'date',
 											}
