@@ -152,7 +152,8 @@ class Admwswp_Admin
             'wp-i18n',
             'wp-element',
             'wp-components'
-            )
+            ),
+            ADMWSWP_VERSION
         );
 
         register_block_type(
