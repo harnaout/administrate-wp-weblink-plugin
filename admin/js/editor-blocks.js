@@ -26,6 +26,11 @@ registerBlockType(
   			const attributes =  props.attributes;
   			const setAttributes =  props.setAttributes;
 
+  			jQuery('.wp-block[data-type="admwswp/weblink"]').on('focus', function(){
+  				var type = jQuery('.admwswp-widget-type select').val();
+  				updateSections(type);
+  			});
+
 				function updateSections(value) {
 		  			var catalogueType = jQuery('.admwswp-catalogue-type');
 						var category = jQuery('.admwswp-catalogue-category');

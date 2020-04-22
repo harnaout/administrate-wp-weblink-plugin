@@ -16,7 +16,7 @@
  * Plugin Name:       Administrate Weblink2 Shortcodes
  * Plugin URI:        https://www.getadministrate.com/
  * Description:       A wordpress Plugin to facilitate the integration with Weblink2 using Short-codes.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            Administrate
  * Author URI:        https://www.getadministrate.com/
  * License:           GPL-2.0+
@@ -30,12 +30,7 @@ if (! defined('WPINC')) {
     die;
 }
 
-/**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
-define('ADMWSWP_VERSION', '1.1.0');
+define('ADMWSWP_VERSION', '1.2.0');
 define('ADMWSWP_TEXTDOMAIN', 'admwswp');
 define('ADMWSWP_PLUGIN_NAME', 'administrate-wp-weblink-plugin/admwswp.php');
 // List of plugins separated by comas.
