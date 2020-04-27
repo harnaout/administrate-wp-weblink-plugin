@@ -161,10 +161,10 @@ registerBlockType(
 											TextControl,
 											{
 												className: 'admwswp-course hidden',
-												value: attributes.course,
-												label: __('Course'),
+												value: attributes.course_code,
+												label: __('Course Code'),
 												onChange: (value) => {
-													setAttributes({course: value});
+													setAttributes({course_code: value});
 												},
 												type: 'text',
 											}
@@ -173,10 +173,10 @@ registerBlockType(
 											TextControl,
 											{
 												className: 'admwswp-location hidden',
-												value: attributes.location,
-												label: __('Location'),
+												value: attributes.location_name,
+												label: __('Location Name'),
 												onChange: (value) => {
-													setAttributes({location: value});
+													setAttributes({location_name: value});
 												},
 												type: 'text',
 											}
@@ -185,10 +185,10 @@ registerBlockType(
 											TextControl,
 											{
 												className: 'admwswp-catalogue-category',
-												value: attributes.category,
+												value: attributes.category_id,
 												label: __('Category ID'),
 												onChange: (value) => {
-													setAttributes({category: value});
+													setAttributes({category_id: value});
 												},
 												type: 'text',
 											}
@@ -197,10 +197,10 @@ registerBlockType(
 											TextControl,
 											{
 												className: 'admwswp-path hidden',
-												value: attributes.path,
+												value: attributes.path_id,
 												label: __('Path'),
 												onChange: (value) => {
-													setAttributes({path: value});
+													setAttributes({path_id: value});
 												},
 												type: 'text',
 											}

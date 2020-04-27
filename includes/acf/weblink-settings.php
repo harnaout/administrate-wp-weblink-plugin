@@ -1,10 +1,9 @@
 <?php
-if( function_exists('acf_add_local_field_group') ):
-
-acf_add_local_field_group(array(
-  'key' => 'group_5e552914d92cc',
-  'title' => 'Admin Short-codes Options',
-  'fields' => array(
+if (function_exists('acf_add_local_field_group')) :
+    acf_add_local_field_group(array(
+    'key' => 'group_5e552914d92cc',
+    'title' => 'Admin Short-codes Options',
+    'fields' => array(
     array(
       'key' => 'field_5e5536716bf2a',
       'label' => 'General Config.',
@@ -629,21 +628,23 @@ acf_add_local_field_group(array(
 [administrate-widget type="CategoryDropdown"]
 
 [administrate-widget type="SearchBar"]
-[administrate-widget type="Catalogue" category="ID"]
+[administrate-widget type="Catalogue" category_id="ID"]
 
-[administrate-widget type="CourseDetails" course="ID"]
-[administrate-widget type="PathDetails" path="ID"]
+[administrate-widget type="CourseDetails" course_code="CODE"]
+[administrate-widget type="PathDetails" path_id="ID"]
 
 [administrate-widget type="EventList"]
-[administrate-widget type="EventList" category="ID"]
+[administrate-widget type="EventList" category_id="ID"]
+[administrate-widget type="EventList" course_code="CODE"]
+[administrate-widget type="EventList" location_name="NAME"]
 [administrate-widget type="EventList" date_filter="false" location_filter="false" course_filter="false" category_filter="false"]
 
 [administrate-widget type=\'Catalogue\' catalogue_type=\'course\' date_filter=\'true\' location_filter=\'true\' course_filter=\'true\' category_filter=\'true\' event_title=\'true\' event_location=\'true\' event_venue=\'true\' event_start_date=\'true\' event_duration=\'true\' event_time=\'true\' event_places_remaining=\'true\' event_price=\'true\' event_addtocart=\'true\' classroom_start_date=\'true\' classroom_duration=\'true\' classroom_time=\'true\' lms_start_date=\'true\' lms_duration=\'true\' lms_time=\'true\']',
       'new_lines' => 'wpautop',
       'esc_html' => 0,
     ),
-  ),
-  'location' => array(
+    ),
+    'location' => array(
     array(
       array(
         'param' => 'options_page',
@@ -651,15 +652,14 @@ acf_add_local_field_group(array(
         'value' => 'adminstrate_shortcodes',
       ),
     ),
-  ),
-  'menu_order' => 0,
-  'position' => 'normal',
-  'style' => 'default',
-  'label_placement' => 'top',
-  'instruction_placement' => 'label',
-  'hide_on_screen' => '',
-  'active' => true,
-  'description' => '',
-));
-
+    ),
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+    ));
 endif;

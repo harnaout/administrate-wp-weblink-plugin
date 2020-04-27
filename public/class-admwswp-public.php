@@ -66,10 +66,10 @@ class Admwswp_Public
             shortcode_atts(
                 array(
                     'type' => 'Catalogue',
-                    'category' => '',
-                    'path' => '',
-                    'course' => '',
-                    'location' => '',
+                    'category_id' => '',
+                    'path_id' => '',
+                    'course_code' => '',
+                    'location_name' => '',
                     'to_date' => '',
                     'from_date' => '',
                     'catalogue_type' => 'All',
@@ -78,7 +78,7 @@ class Admwswp_Public
                     'course_filter' => false,
                     'category_filter' => false,
                     'event_list_order_field' => 'title',
-                    'event_list_order_direction' => '',
+                    'event_list_order_direction' => 'ASC',
                     'event_title' => false,
                     'event_location' => false,
                     'event_venue' => false,
@@ -103,19 +103,24 @@ class Admwswp_Public
 
         switch ($type) {
             case 'PathDetails':
-                if ($path) {
-                    $webLinkArgs['id'] = $path;
+                if ($path_id) {
+                    $webLinkArgs['id'] = $path_id;
                 }
                 break;
             case 'CourseDetails':
             case 'Catalogue':
             case 'Category':
             case 'EventList':
-                if ($course) {
-                    $webLinkArgs['code'] = $course;
+                if ($course_code) {
+                    $webLinkArgs['code'] = $course_code;
                 }
-                if ($category) {
-                    $webLinkArgs['categoryId'] = $category;
+
+                if ($location_name) {
+                    $webLinkArgs['location'] = $location_name;
+                }
+
+                if ($category_id) {
+                    $webLinkArgs['categoryId'] = $category_id;
                 }
 
                 if ('All' !== $catalogue_type) {

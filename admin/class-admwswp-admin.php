@@ -76,7 +76,6 @@ class Admwswp_Admin
 
     public function weblinkWidget($attr)
     {
-
         $type = $attr['type'];
         switch ($type) {
             case 'Basket':
@@ -86,35 +85,35 @@ class Admwswp_Admin
                 return "[administrate-widget type='$type']";
                 break;
             case 'PathDetails':
-                $pathId = $attr['path'];
-                return "[administrate-widget type='$type' path='$pathId']";
+                $pathId = $attr['path_id'];
+                return "[administrate-widget type='$type' path_id='$pathId']";
                 break;
 
             default:
                 switch ($type) {
                     case 'Catalogue':
-                        unset($attr['course']);
+                        unset($attr['course_code']);
                         unset($attr['path']);
-                        unset($attr['location']);
+                        unset($attr['location_name']);
                         unset($attr['to_date']);
                         unset($attr['from_date']);
                         break;
                     case 'CourseDetails':
                         unset($attr['catalogue_type']);
-                        unset($attr['path']);
-                        unset($attr['location']);
+                        unset($attr['path_id']);
+                        unset($attr['location_name']);
                         unset($attr['to_date']);
                         unset($attr['from_date']);
                         break;
                     case 'EventList':
                         unset($attr['catalogue_type']);
-                        unset($attr['path']);
+                        unset($attr['path_id']);
                         break;
                     case 'Category':
                         unset($attr['catalogue_type']);
-                        unset($attr['course']);
-                        unset($attr['path']);
-                        unset($attr['location']);
+                        unset($attr['course_code']);
+                        unset($attr['path_id']);
+                        unset($attr['location_name']);
                         unset($attr['to_date']);
                         unset($attr['from_date']);
                         break;
@@ -152,6 +151,8 @@ class Admwswp_Admin
             ADMWSWP_VERSION
         );
 
+        $eventListOrder = get_field('eventListOrder', 'options');
+
         register_block_type(
             'admwswp/weblink',
             array(
@@ -166,19 +167,19 @@ class Admwswp_Admin
                         'type' => 'string',
                         'default' => 'All'
                     ),
-                    'category' => array(
+                    'category_id' => array(
                         'type' => 'string',
                         'default' => ''
                     ),
-                    'path' => array(
+                    'path_id' => array(
                         'type' => 'string',
                         'default' => ''
                     ),
-                    'course' => array(
+                    'course_code' => array(
                         'type' => 'string',
                         'default' => ''
                     ),
-                    'location' => array(
+                    'location_name' => array(
                         'type' => 'string',
                         'default' => ''
                     ),
@@ -208,11 +209,11 @@ class Admwswp_Admin
                     ),
                     'event_list_order_field' => array(
                         'type' => 'string',
-                        'default' => ''
+                        'default' => $eventListOrder['field'],
                     ),
                     'event_list_order_direction' => array(
                         'type' => 'string',
-                        'default' => ''
+                        'default' => $eventListOrder['direction'],
                     ),
                     'event_title' => array(
                         'type' => 'bool',
