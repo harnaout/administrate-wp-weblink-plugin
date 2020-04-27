@@ -118,10 +118,9 @@ class Admwswp_Public
                     $webLinkArgs['categoryId'] = $category;
                 }
 
-                if ('All' === $catalogue_type) {
-                    $catalogue_type = null;
+                if ('All' !== $catalogue_type) {
+                    $webLinkArgs['catalogueType'] = $catalogue_type;
                 }
-                $webLinkArgs['catalogueType'] = $catalogue_type;
 
                 if ($from_date) {
                     $webLinkArgs['fromDate'] = $from_date;
