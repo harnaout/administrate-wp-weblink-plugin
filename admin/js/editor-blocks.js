@@ -324,8 +324,8 @@ registerBlockType(
 													{value: 'title', label: 'Title'},
 													{value: 'locationName', label: 'Location Name'},
 													{value: 'start', label: 'Start'},
-													{value: 'classroomStart ', label: 'Classroom Start'},
-													{value: 'lmsStart ', label: 'LMS Start'},
+													{value: 'classroomStart', label: 'Classroom Start'},
+													{value: 'lmsStart', label: 'LMS Start'},
 												],
 											}
 										),

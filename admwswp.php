@@ -30,7 +30,7 @@ if (! defined('WPINC')) {
     die;
 }
 
-define('ADMWSWP_VERSION', '1.2.0');
+define('ADMWSWP_VERSION', '1.3.0');
 define('ADMWSWP_TEXTDOMAIN', 'admwswp');
 define('ADMWSWP_PLUGIN_NAME', 'administrate-wp-weblink-plugin/admwswp.php');
 // List of plugins separated by comas.
