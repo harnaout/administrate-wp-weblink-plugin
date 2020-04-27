@@ -26,6 +26,68 @@ registerBlockType(
   			const attributes =  props.attributes;
   			const setAttributes =  props.setAttributes;
 
+  			jQuery('.wp-block[data-type="admwswp/weblink"]').on('focus', function(){
+  				var type = jQuery('.admwswp-widget-type select').val();
+  				updateSections(type);
+  			});
+
+				function updateSections(value) {
+		  			var catalogueType = jQuery('.admwswp-catalogue-type');
+						var category = jQuery('.admwswp-catalogue-category');
+						var path = jQuery('.admwswp-path');
+						var course = jQuery('.admwswp-course');
+						var location = jQuery('.admwswp-location');
+						var date = jQuery('.admwswp-date_range');
+						var sorting = jQuery('.admwswp-sorting');
+						var filters = jQuery('.admwswp-filters');
+						var columns = jQuery('.admwswp-columns');
+
+						catalogueType.addClass('hidden');
+						category.addClass('hidden');
+						path.addClass('hidden');
+						course.addClass('hidden');
+						location.addClass('hidden');
+						date.addClass('hidden');
+						sorting.addClass('hidden');
+						filters.addClass('hidden');
+						columns.addClass('hidden');
+
+						if ('Catalogue' === value) {
+							catalogueType.removeClass('hidden');
+							category.removeClass('hidden');
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+
+						if ('CourseDetails' === value) {
+							course.removeClass('hidden');
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+
+						if ('PathDetails' === value) {
+							path.removeClass('hidden');
+						}
+
+						if ('EventList' === value) {
+							course.removeClass('hidden');
+							location.removeClass('hidden');
+							category.removeClass('hidden');
+							date.removeClass('hidden');
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+
+						if ('Category' === value) {
+							sorting.removeClass('hidden');
+							filters.removeClass('hidden');
+							columns.removeClass('hidden');
+						}
+				}
+
   			//Display block preview and UI
 				var editBlock = createElement(
 					'div',
@@ -44,148 +106,106 @@ registerBlockType(
 							{},
 							[
 								createElement(
-									SelectControl,
+									PanelBody,
 									{
-										className: 'admwswp-widget-type',
-										label: __('Widget Type'),
-										onChange: (value) => {
-											setAttributes({type: value});
+										title: "Widget Main Setup",
+										initialOpen: true,
+										className: 'admwswp-widget-info',
+										icon: 'admin-generic'
+									},
+									[
+										createElement(
+											SelectControl,
+											{
+												className: 'admwswp-widget-type',
+												label: __('Widget Type'),
+												onChange: (value) => {
+													setAttributes({type: value});
 
-											var catalogueType = jQuery('.admwswp-catalogue-type');
-											var category = jQuery('.admwswp-catalogue-category');
-											var path = jQuery('.admwswp-path');
-											var course = jQuery('.admwswp-course');
-											var location = jQuery('.admwswp-location');
-											var date = jQuery('.admwswp-date_range');
-											var sorting = jQuery('.admwswp-sorting');
-											var filters = jQuery('.admwswp-filters');
-											var columns = jQuery('.admwswp-columns');
+													updateSections(value);
 
-											catalogueType.addClass('hidden');
-											category.addClass('hidden');
-											path.addClass('hidden');
-											course.addClass('hidden');
-											location.addClass('hidden');
-											date.addClass('hidden');
-											sorting.addClass('hidden');
-											filters.addClass('hidden');
-											columns.addClass('hidden');
-
-											if ('Catalogue' === value) {
-												catalogueType.removeClass('hidden');
-												category.removeClass('hidden');
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
+												},
+												value: attributes.type,
+												selected: attributes.type,
+												options: [
+													{value: 'Catalogue', label: 'Catalogue'},
+													{value: 'CourseDetails', label: 'Course Details'},
+													{value: 'PathDetails', label: 'Path Details'},
+													{value: 'Basket', label: 'Basket'},
+													{value: 'EventList', label: 'Even tList'},
+													{value: 'Category', label: 'Category'},
+													{value: 'Cart', label: 'Cart'},
+													{value: 'SearchBar', label: 'Search Bar'},
+													{value: 'CategoryDropdown', label: 'Category Dropdown'},
+												],
 											}
-
-											if ('CourseDetails' === value) {
-												course.removeClass('hidden');
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
+										),
+										createElement(
+											SelectControl,
+											{
+												className: 'admwswp-catalogue-type',
+												label: __('Select Catalogue Type'),
+												onChange: (value) => {
+													setAttributes({catalogue_type: value});
+												},
+												value: attributes.catalogue_type,
+												selected: attributes.catalogue_type,
+												options: [
+													{value: 'All', label: 'All'},
+													{value: 'course', label: 'Courses'},
+													{value: 'path', label: 'Paths'},
+												],
 											}
-
-											if ('PathDetails' === value) {
-												path.removeClass('hidden');
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-course hidden',
+												value: attributes.course,
+												label: __('Course'),
+												onChange: (value) => {
+													setAttributes({course: value});
+												},
+												type: 'text',
 											}
-
-											if ('EventList' === value) {
-												course.removeClass('hidden');
-												location.removeClass('hidden');
-												category.removeClass('hidden');
-												date.removeClass('hidden');
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-location hidden',
+												value: attributes.location,
+												label: __('Location'),
+												onChange: (value) => {
+													setAttributes({location: value});
+												},
+												type: 'text',
 											}
-
-											if ('Category' === value) {
-												sorting.removeClass('hidden');
-												filters.removeClass('hidden');
-												columns.removeClass('hidden');
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-catalogue-category',
+												value: attributes.category,
+												label: __('Category ID'),
+												onChange: (value) => {
+													setAttributes({category: value});
+												},
+												type: 'text',
 											}
-
-										},
-										value: attributes.type,
-										selected: attributes.type,
-										options: [
-											{value: 'Catalogue', label: 'Catalogue'},
-											{value: 'CourseDetails', label: 'Course Details'},
-											{value: 'PathDetails', label: 'Path Details'},
-											{value: 'Basket', label: 'Basket'},
-											{value: 'EventList', label: 'Even tList'},
-											{value: 'Category', label: 'Category'},
-											{value: 'Cart', label: 'Cart'},
-											{value: 'SearchBar', label: 'Search Bar'},
-											{value: 'CategoryDropdown', label: 'Category Dropdown'},
-										],
-									}
-								),
-								createElement(
-									RadioControl,
-									{
-										className: 'admwswp-catalogue-type',
-										help: __('Select Catalogue Type'),
-										onChange: (value) => {
-											setAttributes({catalogue_type: value});
-										},
-										value: attributes.catalogue_type,
-										selected: attributes.catalogue_type,
-										options: [
-											{value: 'All', label: 'All'},
-											{value: 'course', label: 'Courses'},
-											{value: 'path', label: 'Paths'},
-										],
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-course hidden',
-										value: attributes.course,
-										label: __('Course'),
-										onChange: (value) => {
-											setAttributes({course: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-location hidden',
-										value: attributes.location,
-										label: __('Location'),
-										onChange: (value) => {
-											setAttributes({location: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-catalogue-category',
-										value: attributes.category,
-										label: __('Category ID'),
-										onChange: (value) => {
-											setAttributes({category: value});
-										},
-										type: 'text',
-									}
-								),
-								createElement(
-									TextControl,
-									{
-										className: 'admwswp-path hidden',
-										value: attributes.path,
-										label: __('Path'),
-										onChange: (value) => {
-											setAttributes({path: value});
-										},
-										type: 'text',
-									}
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-path hidden',
+												value: attributes.path,
+												label: __('Path'),
+												onChange: (value) => {
+													setAttributes({path: value});
+												},
+												type: 'text',
+											}
+										),
+									]
 								),
 								createElement(
 									PanelBody,
@@ -199,11 +219,11 @@ registerBlockType(
 										createElement(
 											TextControl,
 											{
-												className: 'admwswp-to_date',
-												value: attributes.to_date,
-												label: __('To Date'),
+												className: 'admwswp-from_date',
+												value: attributes.from_date,
+												label: __('From Date'),
 												onChange: (value) => {
-													setAttributes({to_date: value});
+													setAttributes({from_date: value});
 												},
 												type: 'date',
 											}
@@ -211,11 +231,11 @@ registerBlockType(
 										createElement(
 											TextControl,
 											{
-												className: 'admwswp-from_date',
-												value: attributes.from_date,
-												label: __('From Date'),
+												className: 'admwswp-to_date',
+												value: attributes.to_date,
+												label: __('To Date'),
 												onChange: (value) => {
-													setAttributes({from_date: value});
+													setAttributes({to_date: value});
 												},
 												type: 'date',
 											}
@@ -304,8 +324,8 @@ registerBlockType(
 													{value: 'title', label: 'Title'},
 													{value: 'locationName', label: 'Location Name'},
 													{value: 'start', label: 'Start'},
-													{value: 'classroomStart ', label: 'Classroom Start'},
-													{value: 'lmsStart ', label: 'LMS Start'},
+													{value: 'classroomStart', label: 'Classroom Start'},
+													{value: 'lmsStart', label: 'LMS Start'},
 												],
 											}
 										),

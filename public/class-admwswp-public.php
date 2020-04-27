@@ -65,7 +65,7 @@ class Admwswp_Public
         extract(
             shortcode_atts(
                 array(
-                    'type' => '',
+                    'type' => 'Catalogue',
                     'category' => '',
                     'path' => '',
                     'course' => '',
@@ -77,7 +77,7 @@ class Admwswp_Public
                     'location_filter' => false,
                     'course_filter' => false,
                     'category_filter' => false,
-                    'event_list_order_field' => '',
+                    'event_list_order_field' => 'title',
                     'event_list_order_direction' => '',
                     'event_title' => false,
                     'event_location' => false,
@@ -117,12 +117,8 @@ class Admwswp_Public
                 if ($category) {
                     $webLinkArgs['categoryId'] = $category;
                 }
-                if (!$catalogue_type) {
-                    $webLinkArgs['catalogueType'] = get_field('catalogueType', 'options');
-                } else {
-                    if ('All' === $catalogue_type) {
-                        $catalogue_type = null;
-                    }
+
+                if ('All' !== $catalogue_type) {
                     $webLinkArgs['catalogueType'] = $catalogue_type;
                 }
 
@@ -134,148 +130,29 @@ class Admwswp_Public
                     $webLinkArgs['toDate'] = $to_date;
                 }
 
-                if (!$date_filter) {
-                    $webLinkArgs['showDateFilter'] = get_field('showDateFilter', 'options');
-                } else {
-                    $date_filter = ($date_filter === 'true') ? true : false;
-                    $webLinkArgs['showDateFilter'] = $date_filter;
-                }
+                $webLinkArgs['showDateFilter'] = ($date_filter === 'true') || ($date_filter) ? true : false;
+                $webLinkArgs['showLocationFilter'] = ($location_filter === 'true') || ($location_filter) ? true : false;
+                $webLinkArgs['showCourseFilter'] = ($course_filter === 'true') || ($course_filter) ? true : false;
+                $webLinkArgs['showCategoryFilter'] = ($category_filter === 'true') || ($category_filter) ? true : false;
 
-                if (!$location_filter) {
-                    $webLinkArgs['showLocationFilter'] = get_field('showLocationFilter', 'options');
-                } else {
-                    $location_filter = ($location_filter === 'true') ? true : false;
-                    $webLinkArgs['showLocationFilter'] = $location_filter;
-                }
+                $webLinkArgs['eventListOrder']['field'] = $event_list_order_field;
+                $webLinkArgs['eventListOrder']['direction'] = $event_list_order_direction;
 
-                if (!$course_filter) {
-                    $webLinkArgs['showCourseFilter'] = get_field('showCourseFilter', 'options');
-                } else {
-                    $course_filter = ($course_filter === 'true') ? true : false;
-                    $webLinkArgs['showCourseFilter'] = $course_filter;
-                }
-
-                if (!$category_filter) {
-                    $webLinkArgs['showCategoryFilter'] = get_field('showCategoryFilter', 'options');
-                } else {
-                    $category_filter = ($category_filter === 'true') ? true : false;
-                    $webLinkArgs['showCategoryFilter'] = $category_filter;
-                }
-
-                if (!$event_list_order_field) {
-                    $eventListOrder = get_field('eventListOrder', 'options');
-                    if ($eventListOrder['field']) {
-                        $webLinkArgs['eventListOrder'] = $eventListOrder;
-                    }
-                } else {
-                    $webLinkArgs['eventListOrder']['field'] = $event_list_order_field;
-                    $webLinkArgs['eventListOrder']['direction'] = $event_list_order_direction;
-                }
-
-                if (!$event_title) {
-                    $webLinkArgs['showTitleColumn'] = get_field('showTitleColumn', 'options');
-                } else {
-                    $event_title = ($event_title === 'true') ? true : false;
-                    $webLinkArgs['showTitleColumn'] = $event_title;
-                }
-
-                if (!$event_location) {
-                    $webLinkArgs['showLocationColumn'] = get_field('showLocationColumn', 'options');
-                } else {
-                    $event_location = ($event_location === 'true') ? true : false;
-                    $webLinkArgs['showLocationColumn'] = $event_location;
-                }
-
-                if (!$event_venue) {
-                    $webLinkArgs['showVenueColumn'] = get_field('showVenueColumn', 'options');
-                } else {
-                    $event_venue = ($event_venue === 'true') ? true : false;
-                    $webLinkArgs['showVenueColumn'] = $event_venue;
-                }
-
-                if (!$event_start_date) {
-                    $webLinkArgs['showStartDateColumn'] = get_field('showStartDateColumn', 'options');
-                } else {
-                    $event_start_date = ($event_start_date === 'true') ? true : false;
-                    $webLinkArgs['showStartDateColumn'] = $event_start_date;
-                }
-
-                if (!$event_duration) {
-                    $webLinkArgs['showDurationColumn'] = get_field('showDurationColumn', 'options');
-                } else {
-                    $event_duration = ($event_duration === 'true') ? true : false;
-                    $webLinkArgs['showDurationColumn'] = $event_duration;
-                }
-
-                if (!$event_time) {
-                    $webLinkArgs['showTimeColumn'] = get_field('showTimeColumn', 'options');
-                } else {
-                    $event_time = ($event_time === 'true') ? true : false;
-                    $webLinkArgs['showTimeColumn'] = $event_time;
-                }
-
-                if (!$event_places_remaining) {
-                    $webLinkArgs['showPlacesRemainingColumn'] = get_field('showPlacesRemainingColumn', 'options');
-                } else {
-                    $event_places_remaining = ($event_places_remaining === 'true') ? true : false;
-                    $webLinkArgs['showPlacesRemainingColumn'] = $event_places_remaining;
-                }
-
-                if (!$event_price) {
-                    $webLinkArgs['showPriceColumn'] = get_field('showPriceColumn', 'options');
-                } else {
-                    $event_price = ($event_price === 'true') ? true : false;
-                    $webLinkArgs['showPriceColumn'] = $event_price;
-                }
-
-                if (!$event_addtocart) {
-                    $webLinkArgs['showAddToCartColumn'] = get_field('showAddToCartColumn', 'options');
-                } else {
-                    $event_addtocart = ($event_addtocart === 'true') ? true : false;
-                    $webLinkArgs['showAddToCartColumn'] = $event_addtocart;
-                }
-
-                if (!$classroom_start_date) {
-                    $webLinkArgs['showClassroomStartDateColumn'] = get_field('showClassroomStartDateColumn', 'options');
-                } else {
-                    $classroom_start_date = ($classroom_start_date === 'true') ? true : false;
-                    $webLinkArgs['showClassroomStartDateColumn'] = $classroom_start_date;
-                }
-
-                if (!$classroom_duration) {
-                    $webLinkArgs['showClassroomDurationColumn'] = get_field('showClassroomDurationColumn', 'options');
-                } else {
-                    $classroom_duration = ($classroom_duration === 'true') ? true : false;
-                    $webLinkArgs['showClassroomDurationColumn'] = $classroom_duration;
-                }
-
-                if (!$classroom_time) {
-                    $webLinkArgs['showClassroomTimeColumn'] = get_field('showClassroomTimeColumn', 'options');
-                } else {
-                    $classroom_time = ($classroom_time === 'true') ? true : false;
-                    $webLinkArgs['showClassroomTimeColumn'] = $classroom_time;
-                }
-
-                if (!$lms_start_date) {
-                    $webLinkArgs['showLmsStartDateColumn'] = get_field('showLmsStartDateColumn', 'options');
-                } else {
-                    $lms_start_date = ($lms_start_date === 'true') ? true : false;
-                    $webLinkArgs['showLmsStartDateColumn'] = $lms_start_date;
-                }
-
-                if (!$lms_duration) {
-                    $webLinkArgs['showLmsDurationColumn'] = get_field('showLmsDurationColumn', 'options');
-                } else {
-                    $lms_duration = ($lms_duration === 'true') ? true : false;
-                    $webLinkArgs['showLmsDurationColumn'] = $lms_duration;
-                }
-
-                if (!$lms_time) {
-                    $webLinkArgs['showLmsTimeColumn'] = get_field('showLmsTimeColumn', 'options');
-                } else {
-                    $lms_time = ($lms_time === 'true') ? true : false;
-                    $webLinkArgs['showLmsTimeColumn'] = $lms_time;
-                }
+                $webLinkArgs['showTitleColumn'] = ($event_title === 'true') || ($event_title) ? true : false;
+                $webLinkArgs['showLocationColumn'] = ($event_location === 'true') || ($event_location) ? true : false;
+                $webLinkArgs['showVenueColumn'] = ($event_venue === 'true') || ($event_venue) ? true : false;
+                $webLinkArgs['showStartDateColumn'] = ($event_start_date === 'true') || ($event_start_date) ? true : false;
+                $webLinkArgs['showDurationColumn'] = ($event_duration === 'true') || ($event_duration) ? true : false;
+                $webLinkArgs['showTimeColumn'] = ($event_time === 'true') || ($event_time) ? true : false;
+                $webLinkArgs['showPlacesRemainingColumn'] = ($event_places_remaining === 'true') || ($event_places_remaining) ? true : false;
+                $webLinkArgs['showPriceColumn'] = ($event_price === 'true') || ($event_price) ? true : false;
+                $webLinkArgs['showAddToCartColumn'] = ($event_addtocart === 'true') || ($event_addtocart) ? true : false;
+                $webLinkArgs['showClassroomStartDateColumn'] = ($classroom_start_date === 'true') || ($classroom_start_date) ? true : false;
+                $webLinkArgs['showClassroomDurationColumn'] = ($classroom_duration === 'true') || ($classroom_duration) ? true : false;
+                $webLinkArgs['showClassroomTimeColumn'] = ($classroom_time === 'true') || ($classroom_time) ? true : false;
+                $webLinkArgs['showLmsStartDateColumn'] = ($lms_start_date === 'true') || ($lms_start_date) ? true : false;
+                $webLinkArgs['showLmsDurationColumn'] = ($lms_duration === 'true') || ($lms_duration) ? true : false;
+                $webLinkArgs['showLmsTimeColumn'] =($lms_time === 'true') || ($lms_time) ? true : false;
                 break;
             default:
                 break;
