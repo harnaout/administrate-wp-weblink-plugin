@@ -111,7 +111,6 @@ class Admwswp_Admin
                         break;
                     case 'EventList':
                         unset($attr['catalogue_type']);
-                        unset($attr['course']);
                         unset($attr['path']);
                         break;
                     case 'Category':
