@@ -16,7 +16,7 @@
  * Plugin Name:       Administrate Weblink2 Shortcodes
  * Plugin URI:        https://www.getadministrate.com/
  * Description:       A wordpress Plugin to facilitate the integration with Weblink2 using Short-codes.
- * Version:           1.2.0
+ * Version:           1.3.0
  * Author:            Administrate
  * Author URI:        https://www.getadministrate.com/
  * License:           GPL-2.0+
