@@ -85,6 +85,10 @@ class Admwswp_Admin
             case 'CategoryDropdown':
                 return "[administrate-widget type='$type']";
                 break;
+            case 'PathDetails':
+                $pathId = $attr['path'];
+                return "[administrate-widget type='$type' path='$pathId']";
+                break;
 
             default:
                 switch ($type) {
@@ -98,13 +102,6 @@ class Admwswp_Admin
                     case 'CourseDetails':
                         unset($attr['catalogue_type']);
                         unset($attr['path']);
-                        unset($attr['location']);
-                        unset($attr['to_date']);
-                        unset($attr['from_date']);
-                        break;
-                    case 'PathDetails':
-                        unset($attr['catalogue_type']);
-                        unset($attr['course']);
                         unset($attr['location']);
                         unset($attr['to_date']);
                         unset($attr['from_date']);
