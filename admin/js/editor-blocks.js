@@ -132,7 +132,7 @@ registerBlockType(
 													{value: 'CourseDetails', label: 'Course Details'},
 													{value: 'PathDetails', label: 'Path Details'},
 													{value: 'Basket', label: 'Basket'},
-													{value: 'EventList', label: 'Even tList'},
+													{value: 'EventList', label: 'Event List'},
 													{value: 'Category', label: 'Category'},
 													{value: 'Cart', label: 'Cart'},
 													{value: 'SearchBar', label: 'Search Bar'},
