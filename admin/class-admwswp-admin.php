@@ -167,6 +167,10 @@ class Admwswp_Admin
                         'type' => 'string',
                         'default' => 'All'
                     ),
+                    'pager_type' => array(
+                        'type' => 'string',
+                        'default' => 'loadMore'
+                    ),
                     'category_id' => array(
                         'type' => 'string',
                         'default' => ''

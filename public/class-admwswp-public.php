@@ -73,6 +73,7 @@ class Admwswp_Public
                     'to_date' => '',
                     'from_date' => '',
                     'catalogue_type' => 'All',
+                    'pager_type' => 'loadMore',
                     'date_filter' => false,
                     'location_filter' => false,
                     'course_filter' => false,
@@ -125,6 +126,10 @@ class Admwswp_Public
 
                 if ('All' !== $catalogue_type) {
                     $webLinkArgs['catalogueType'] = $catalogue_type;
+                }
+
+                if ('All' !== $pager_type) {
+                    $webLinkArgs['widgetPagerType'] = $pager_type;
                 }
 
                 if ($from_date) {
