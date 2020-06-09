@@ -32,7 +32,8 @@ registerBlockType(
   			});
 
 				function updateSections(value) {
-		  			var catalogueType = jQuery('.admwswp-catalogue-type');
+					  var catalogueType = jQuery('.admwswp-catalogue-type');
+					  	var pagerType = jQuery('.admwswp-pager-type');
 						var category = jQuery('.admwswp-catalogue-category');
 						var path = jQuery('.admwswp-path');
 						var course = jQuery('.admwswp-course');
@@ -51,6 +52,7 @@ registerBlockType(
 						sorting.addClass('hidden');
 						filters.addClass('hidden');
 						columns.addClass('hidden');
+						pagerType.addClass('hidden');
 
 						if ('Catalogue' === value) {
 							catalogueType.removeClass('hidden');
@@ -58,6 +60,7 @@ registerBlockType(
 							sorting.removeClass('hidden');
 							filters.removeClass('hidden');
 							columns.removeClass('hidden');
+							pagerType.removeClass('hidden');
 						}
 
 						if ('CourseDetails' === value) {
@@ -154,6 +157,22 @@ registerBlockType(
 													{value: 'All', label: 'All'},
 													{value: 'course', label: 'Courses'},
 													{value: 'path', label: 'Paths'},
+												],
+											}
+										),
+										createElement(
+											SelectControl,
+											{
+												className: 'admwswp-pager-type',
+												label: __('Select Pager Type'),
+												onChange: (value) => {
+													setAttributes({pager_type: value});
+												},
+												value: attributes.pager_type,
+												selected: attributes.pager_type,
+												options: [
+													{value: 'loadMore', label: 'Load More'},
+													{value: 'full', label: 'Full Pager'},
 												],
 											}
 										),
