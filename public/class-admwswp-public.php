@@ -129,7 +129,7 @@ class Admwswp_Public
                 }
 
                 if ('All' !== $pager_type) {
-                    $webLinkArgs['widgetPagerType'] = $pager_type;
+                    $webLinkArgs['pagerType'] = $pager_type;
                 }
 
                 if ($from_date) {
