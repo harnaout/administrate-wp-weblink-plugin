@@ -79,7 +79,7 @@ class Admwswp_Public
                     'course_filter' => false,
                     'category_filter' => false,
                     'event_list_order_field' => 'title',
-                    'event_list_order_direction' => 'ASC',
+                    'event_list_order_direction' => 'asc',
                     'event_title' => false,
                     'event_location' => false,
                     'event_venue' => false,
