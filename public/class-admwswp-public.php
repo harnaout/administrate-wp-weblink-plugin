@@ -184,8 +184,8 @@ class Admwswp_Public
 
         $html .= "<script type='text/javascript'>";
         $html .= "jQuery(function($) {";
-        $html .= "var webLink = new window.WebLink(webLinkConfig);";
-        $html .= 'webLink.mount(
+        $html .= "var " . $widgetId ." = new window.WebLink(webLinkConfig);";
+        $html .= $widgetId.'.mount(
 	        document.getElementById(
 	        "' . $widgetId . '"),
 	        "'. $type . '"';
@@ -268,6 +268,8 @@ class Admwswp_Public
           'hashRouting' => $hashRouting,
           'timezone' => $timezone,
         );
+
+        $webLinkConfig = apply_filters('admwswp_weblink_config', $webLinkConfig);
 
         wp_enqueue_script(
             $this->plugin_name . '-weblink-js',
