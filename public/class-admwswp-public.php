@@ -95,6 +95,7 @@ class Admwswp_Public
                     'lms_start_date' => false,
                     'lms_duration' => false,
                     'lms_time' => false,
+                    'pager_type' => 'loadMore',
                 ),
                 $attr
             )
