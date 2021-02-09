@@ -73,12 +73,13 @@ class Admwswp_Public
                     'to_date' => '',
                     'from_date' => '',
                     'catalogue_type' => 'All',
+                    'pager_type' => 'loadMore',
                     'date_filter' => false,
                     'location_filter' => false,
                     'course_filter' => false,
                     'category_filter' => false,
                     'event_list_order_field' => 'title',
-                    'event_list_order_direction' => 'ASC',
+                    'event_list_order_direction' => 'asc',
                     'event_title' => false,
                     'event_location' => false,
                     'event_venue' => false,
@@ -94,6 +95,7 @@ class Admwswp_Public
                     'lms_start_date' => false,
                     'lms_duration' => false,
                     'lms_time' => false,
+                    'pager_type' => 'loadMore',
                 ),
                 $attr
             )
@@ -127,6 +129,10 @@ class Admwswp_Public
                     $webLinkArgs['catalogueType'] = $catalogue_type;
                 }
 
+                if ('All' !== $pager_type) {
+                    $webLinkArgs['pagerType'] = $pager_type;
+                }
+
                 if ($from_date) {
                     $webLinkArgs['fromDate'] = $from_date;
                 }
@@ -135,35 +141,39 @@ class Admwswp_Public
                     $webLinkArgs['toDate'] = $to_date;
                 }
 
-                $webLinkArgs['showDateFilter'] = ($date_filter === 'true') || ($date_filter) ? true : false;
-                $webLinkArgs['showLocationFilter'] = ($location_filter === 'true') || ($location_filter) ? true : false;
-                $webLinkArgs['showCourseFilter'] = ($course_filter === 'true') || ($course_filter) ? true : false;
-                $webLinkArgs['showCategoryFilter'] = ($category_filter === 'true') || ($category_filter) ? true : false;
+                $webLinkArgs['showDateFilter'] = filter_var($date_filter, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showLocationFilter'] = filter_var($location_filter, FILTER_VALIDATE_BOOLEAN);
+
+                $webLinkArgs['showCourseFilter'] = filter_var($course_filter, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showCategoryFilter'] = filter_var($category_filter, FILTER_VALIDATE_BOOLEAN);
 
                 $webLinkArgs['eventListOrder']['field'] = $event_list_order_field;
                 $webLinkArgs['eventListOrder']['direction'] = $event_list_order_direction;
 
-                $webLinkArgs['showTitleColumn'] = ($event_title === 'true') || ($event_title) ? true : false;
-                $webLinkArgs['showLocationColumn'] = ($event_location === 'true') || ($event_location) ? true : false;
-                $webLinkArgs['showVenueColumn'] = ($event_venue === 'true') || ($event_venue) ? true : false;
-                $webLinkArgs['showStartDateColumn'] = ($event_start_date === 'true') || ($event_start_date) ? true : false;
-                $webLinkArgs['showDurationColumn'] = ($event_duration === 'true') || ($event_duration) ? true : false;
-                $webLinkArgs['showTimeColumn'] = ($event_time === 'true') || ($event_time) ? true : false;
-                $webLinkArgs['showPlacesRemainingColumn'] = ($event_places_remaining === 'true') || ($event_places_remaining) ? true : false;
-                $webLinkArgs['showPriceColumn'] = ($event_price === 'true') || ($event_price) ? true : false;
-                $webLinkArgs['showAddToCartColumn'] = ($event_addtocart === 'true') || ($event_addtocart) ? true : false;
-                $webLinkArgs['showClassroomStartDateColumn'] = ($classroom_start_date === 'true') || ($classroom_start_date) ? true : false;
-                $webLinkArgs['showClassroomDurationColumn'] = ($classroom_duration === 'true') || ($classroom_duration) ? true : false;
-                $webLinkArgs['showClassroomTimeColumn'] = ($classroom_time === 'true') || ($classroom_time) ? true : false;
-                $webLinkArgs['showLmsStartDateColumn'] = ($lms_start_date === 'true') || ($lms_start_date) ? true : false;
-                $webLinkArgs['showLmsDurationColumn'] = ($lms_duration === 'true') || ($lms_duration) ? true : false;
-                $webLinkArgs['showLmsTimeColumn'] =($lms_time === 'true') || ($lms_time) ? true : false;
+                $webLinkArgs['showTitleColumn'] = filter_var($event_title, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showLocationColumn'] = filter_var($event_location, FILTER_VALIDATE_BOOLEAN);
+
+                $webLinkArgs['showVenueColumn'] = filter_var($event_venue, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showStartDateColumn'] = filter_var($event_start_date, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showDurationColumn'] = filter_var($event_duration, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showTimeColumn'] = filter_var($event_time, FILTER_VALIDATE_BOOLEAN);
+
+                $webLinkArgs['showPlacesRemainingColumn'] = filter_var($event_places_remaining, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showPriceColumn'] = filter_var($event_price, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showAddToCartColumn'] = filter_var($event_addtocart, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showClassroomStartDateColumn'] = filter_var($classroom_start_date, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showClassroomDurationColumn'] = filter_var($classroom_duration, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showClassroomTimeColumn'] = filter_var($classroom_time, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showLmsStartDateColumn'] = filter_var($lms_start_date, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showLmsDurationColumn'] = filter_var($lms_duration, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showLmsTimeColumn'] = filter_var($lms_time, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['pagerType'] = $pager_type;
                 break;
             default:
                 break;
         }
 
-        $widgetId = "weblink-" . $type . "-" . time();
+        $widgetId = "weblink_" . $type . "_" . time();
         $html = "<div id='weblink-widget-container' class='weblink-$type-container'>";
         $html .= "<div id='$widgetId' class='weblink-$type'>";
         $html .= "<div class='fa-3x text-center'>";
@@ -174,8 +184,8 @@ class Admwswp_Public
 
         $html .= "<script type='text/javascript'>";
         $html .= "jQuery(function($) {";
-        $html .= "var webLink = new window.WebLink(webLinkConfig);";
-        $html .= 'webLink.mount(
+        $html .= "var " . $widgetId ." = new window.WebLink(webLinkConfig);";
+        $html .= $widgetId.'.mount(
 	        document.getElementById(
 	        "' . $widgetId . '"),
 	        "'. $type . '"';
@@ -258,6 +268,8 @@ class Admwswp_Public
           'hashRouting' => $hashRouting,
           'timezone' => $timezone,
         );
+
+        $webLinkConfig = apply_filters('admwswp_weblink_config', $webLinkConfig);
 
         wp_enqueue_script(
             $this->plugin_name . '-weblink-js',
