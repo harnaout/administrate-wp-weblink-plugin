@@ -231,9 +231,12 @@ class Admwswp_Public
 
         $portalAddress = get_field('portalAddress', 'options');
 
+        $webLinkCss = 'https://' . $portalAddress . '/static/css/main.css';
+        $webLinkCss = apply_filters('admwswp_weblink_css', $webLinkCss);
+
         wp_enqueue_style(
             $this->plugin_name . '-weblink-css',
-            'https://' . $portalAddress . '/static/css/main.css',
+            $webLinkCss,
             array(),
             $this->version
         );
@@ -271,9 +274,12 @@ class Admwswp_Public
 
         $webLinkConfig = apply_filters('admwswp_weblink_config', $webLinkConfig);
 
+        $webLinkJs = 'https://' . $portalAddress . '/static/js/weblink.bundle.min.js';
+        $webLinkJs = apply_filters('admwswp_weblink_js', $webLinkJs);
+
         wp_enqueue_script(
             $this->plugin_name . '-weblink-js',
-            'https://' . $portalAddress . '/static/js/weblink.bundle.min.js',
+            $webLinkJs,
             array('jquery'),
             $this->version,
             true
