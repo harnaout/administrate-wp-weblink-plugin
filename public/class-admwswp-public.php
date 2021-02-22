@@ -95,6 +95,7 @@ class Admwswp_Public
                     'lms_start_date' => false,
                     'lms_duration' => false,
                     'lms_time' => false,
+                    'show_basket_popover' => false,
                     'pager_type' => 'loadMore',
                 ),
                 $attr
@@ -104,6 +105,9 @@ class Admwswp_Public
         $webLinkArgs = array();
 
         switch ($type) {
+            case 'Basket':
+                $webLinkArgs['showBasketPopover'] = filter_var($show_basket_popover, FILTER_VALIDATE_BOOLEAN);
+                break;
             case 'PathDetails':
                 if ($path_id) {
                     $webLinkArgs['id'] = $path_id;
@@ -221,8 +225,20 @@ class Admwswp_Public
          * class.
          */
 
+        //Bootstrap - you can remove this CSS if you already have Bootstrap in your theme
+        //wp_dequeue_style('admwswp-bootstrap-css'); and
+        //wp_deregister_style('admwswp-bootstrap-css');
+        //inside the 'wp_enqueue_scripts' action hook.
+        wp_enqueue_style(
+            $this->plugin_name . '-bootstrap',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css',
+            array(),
+            $this->version,
+            'all'
+        );
+
         // wp_enqueue_style(
-        //     $this->plugin_name . '-public-css',
+        //     $this->plugin_name . '-public',
         //     plugin_dir_url(__FILE__) . 'css/admwswp-public.css',
         //     array(),
         //     $this->version,
@@ -235,7 +251,7 @@ class Admwswp_Public
         $webLinkCss = apply_filters('admwswp_weblink_css', $webLinkCss);
 
         wp_enqueue_style(
-            $this->plugin_name . '-weblink-css',
+            $this->plugin_name . '-weblink',
             $webLinkCss,
             array(),
             $this->version
@@ -278,7 +294,7 @@ class Admwswp_Public
         $webLinkJs = apply_filters('admwswp_weblink_js', $webLinkJs);
 
         wp_enqueue_script(
-            $this->plugin_name . '-weblink-js',
+            $this->plugin_name . '-weblink',
             $webLinkJs,
             array('jquery'),
             $this->version,
@@ -286,7 +302,7 @@ class Admwswp_Public
         );
 
         // wp_enqueue_script(
-        //     $this->plugin_name . '-public-js',
+        //     $this->plugin_name . '-public',
         //     plugin_dir_url(__FILE__) . 'js/admwswp-public.js',
         //     array( 'jquery' ),
         //     $this->version,
@@ -294,7 +310,7 @@ class Admwswp_Public
         // );
 
         wp_add_inline_script(
-            $this->plugin_name . '-weblink-js',
+            $this->plugin_name . '-weblink',
             'var webLinkConfig = ' . json_encode($webLinkConfig) . ";"
         );
     }
