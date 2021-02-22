@@ -239,7 +239,7 @@ class Admwswp_Public
         $webLinkCss = apply_filters('admwswp_weblink_css', $webLinkCss);
 
         wp_enqueue_style(
-            $this->plugin_name . '-weblink-css',
+            $this->plugin_name . '-weblink',
             $webLinkCss,
             array(),
             $this->version
@@ -282,7 +282,7 @@ class Admwswp_Public
         $webLinkJs = apply_filters('admwswp_weblink_js', $webLinkJs);
 
         wp_enqueue_script(
-            $this->plugin_name . '-weblink-js',
+            $this->plugin_name . '-weblink',
             $webLinkJs,
             array('jquery'),
             $this->version,
@@ -290,7 +290,7 @@ class Admwswp_Public
         );
 
         // wp_enqueue_script(
-        //     $this->plugin_name . '-public-js',
+        //     $this->plugin_name . '-public',
         //     plugin_dir_url(__FILE__) . 'js/admwswp-public.js',
         //     array( 'jquery' ),
         //     $this->version,
@@ -298,7 +298,7 @@ class Admwswp_Public
         // );
 
         wp_add_inline_script(
-            $this->plugin_name . '-weblink-js',
+            $this->plugin_name . '-weblink',
             'var webLinkConfig = ' . json_encode($webLinkConfig) . ";"
         );
     }
