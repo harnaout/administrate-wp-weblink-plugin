@@ -95,6 +95,7 @@ class Admwswp_Public
                     'lms_start_date' => false,
                     'lms_duration' => false,
                     'lms_time' => false,
+                    'show_basket_popover' => false,
                     'pager_type' => 'loadMore',
                 ),
                 $attr
@@ -104,6 +105,9 @@ class Admwswp_Public
         $webLinkArgs = array();
 
         switch ($type) {
+            case 'Basket':
+                $webLinkArgs['showBasketPopover'] = filter_var($show_basket_popover, FILTER_VALIDATE_BOOLEAN);
+                break;
             case 'PathDetails':
                 if ($path_id) {
                     $webLinkArgs['id'] = $path_id;
