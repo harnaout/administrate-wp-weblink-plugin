@@ -225,8 +225,20 @@ class Admwswp_Public
          * class.
          */
 
+        //Bootstrap - you can remove this CSS if you already have Bootstrap in your theme
+        //wp_dequeue_style('admwswp-bootstrap-css'); and
+        //wp_deregister_style('admwswp-bootstrap-css');
+        //inside the 'wp_enqueue_scripts' action hook.
+        wp_enqueue_style(
+            $this->plugin_name . '-bootstrap',
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css',
+            array(),
+            $this->version,
+            'all'
+        );
+
         // wp_enqueue_style(
-        //     $this->plugin_name . '-public-css',
+        //     $this->plugin_name . '-public',
         //     plugin_dir_url(__FILE__) . 'css/admwswp-public.css',
         //     array(),
         //     $this->version,
