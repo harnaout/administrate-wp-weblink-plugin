@@ -79,6 +79,9 @@ class Admwswp_Admin
         $type = $attr['type'];
         switch ($type) {
             case 'Basket':
+                unset($attr['cart_url']);
+                unset($attr['screen_size']);
+            break;
             case 'Cart':
             case 'SearchBar':
             case 'CategoryDropdown':

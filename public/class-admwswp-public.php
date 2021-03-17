@@ -96,6 +96,8 @@ class Admwswp_Public
                     'lms_duration' => false,
                     'lms_time' => false,
                     'show_basket_popover' => false,
+                    'cart_url' => '',
+                    'screen_size' => 'desktop',
                     'pager_type' => 'loadMore',
                 ),
                 $attr
@@ -107,6 +109,9 @@ class Admwswp_Public
         switch ($type) {
             case 'Basket':
                 $webLinkArgs['showBasketPopover'] = filter_var($show_basket_popover, FILTER_VALIDATE_BOOLEAN);
+                if ($cart_url) {
+                    $webLinkArgs['cartUrl'] = $cart_url;
+                }
                 break;
             case 'PathDetails':
                 if ($path_id) {
@@ -177,7 +182,7 @@ class Admwswp_Public
                 break;
         }
 
-        $widgetId = "weblink_" . $type . "_" . time();
+        $widgetId = "weblink_" . $type . "_" . time() . "_" . $screen_size;
         $html = "<div id='weblink-widget-container' class='weblink-$type-container'>";
         $html .= "<div id='$widgetId' class='weblink-$type'>";
         $html .= "<div class='fa-3x text-center'>";
