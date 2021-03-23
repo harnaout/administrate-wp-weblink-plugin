@@ -193,8 +193,7 @@ class Admwswp_Public
 
         $html .= "<script type='text/javascript'>";
         $html .= "jQuery(function($) {";
-        $html .= "var " . $widgetId ." = new window.WebLink(webLinkConfig);";
-        $html .= $widgetId.'.mount(
+        $html .= 'weblink.mount(
 	        document.getElementById(
 	        "' . $widgetId . '"),
 	        "'. $type . '"';
@@ -316,7 +315,7 @@ class Admwswp_Public
 
         wp_add_inline_script(
             $this->plugin_name . '-weblink',
-            'var webLinkConfig = ' . json_encode($webLinkConfig) . ";"
+            'var webLinkConfig = ' . json_encode($webLinkConfig) . '; var weblink = new window.WebLink(webLinkConfig);'
         );
     }
 }
