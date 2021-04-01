@@ -85,6 +85,7 @@ class Admwswp_Admin
             case 'Cart':
             case 'SearchBar':
             case 'CategoryDropdown':
+            case 'GiftVoucherBalance':
                 return "[administrate-widget type='$type']";
                 break;
             case 'PathDetails':
