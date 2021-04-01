@@ -624,6 +624,9 @@ if (function_exists('acf_add_local_field_group')) :
       'message' => '[administrate-widget type="Basket"]
 [administrate-widget type="Cart"]
 
+# Gift Voucher Shortcodes
+[administrate-widget type="GiftVoucherBalance"]
+
 [administrate-widget type="Category"]
 [administrate-widget type="CategoryDropdown"]
 

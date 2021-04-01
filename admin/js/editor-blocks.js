@@ -140,6 +140,7 @@ registerBlockType(
 													{value: 'Cart', label: 'Cart'},
 													{value: 'SearchBar', label: 'Search Bar'},
 													{value: 'CategoryDropdown', label: 'Category Dropdown'},
+													{value: 'GiftVoucherBalance', label: 'Gift Voucher Balance'},
 												],
 											}
 										),
