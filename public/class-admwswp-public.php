@@ -315,7 +315,7 @@ class Admwswp_Public
 
         wp_add_inline_script(
             $this->plugin_name . '-weblink',
-            'var webLinkConfig = ' . json_encode($webLinkConfig) . '; var weblink = new window.WebLink(webLinkConfig);'
+            'var webLinkConfig = ' . stripslashes(json_encode($webLinkConfig)) . '; var weblink = new window.WebLink(webLinkConfig);'
         );
     }
 }
