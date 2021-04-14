@@ -642,7 +642,10 @@ if (function_exists('acf_add_local_field_group')) :
 [administrate-widget type="EventList" location_name="NAME"]
 [administrate-widget type="EventList" date_filter="false" location_filter="false" course_filter="false" category_filter="false"]
 
-[administrate-widget type=\'Catalogue\' catalogue_type=\'course\' date_filter=\'true\' location_filter=\'true\' course_filter=\'true\' category_filter=\'true\' event_title=\'true\' event_location=\'true\' event_venue=\'true\' event_start_date=\'true\' event_duration=\'true\' event_time=\'true\' event_places_remaining=\'true\' event_price=\'true\' event_addtocart=\'true\' classroom_start_date=\'true\' classroom_duration=\'true\' classroom_time=\'true\' lms_start_date=\'true\' lms_duration=\'true\' lms_time=\'true\']',
+[administrate-widget type=\'Catalogue\' catalogue_type=\'course\' date_filter=\'true\' location_filter=\'true\' course_filter=\'true\' category_filter=\'true\' event_title=\'true\' event_location=\'true\' event_venue=\'true\' event_start_date=\'true\' event_duration=\'true\' event_time=\'true\' event_places_remaining=\'true\' event_price=\'true\' event_addtocart=\'true\' classroom_start_date=\'true\' classroom_duration=\'true\' classroom_time=\'true\' lms_start_date=\'true\' lms_duration=\'true\' lms_time=\'true\']
+
+  [admwswp-addToCart path_id="Path ID" class=""]
+  [admwswp-addToCart course_id="Course ID" class=""]',
       'new_lines' => 'wpautop',
       'esc_html' => 0,
     ),

@@ -55,6 +55,37 @@ class Admwswp_Public
         $this->version = $version;
     }
 
+    public static function addToCart($attr)
+    {
+        if (is_admin()) {
+            return;
+        }
+
+        extract(
+            shortcode_atts(
+                array(
+                    'path_id' => '',
+                    'course_id' => '',
+                    'class' => 'btn btn-lg btn-primary',
+                ),
+                $attr
+            )
+        );
+
+        if ($path_id) {
+            $data = "data-path_id=" . $path_id;
+        }
+
+        if ($course_id) {
+            $data = "data-course_id=" . $course_id;
+        }
+
+        $html = "<div class='admwswp-addToCart $class' $data>";
+        $html .= __('Add to Cart', 'admwswp');
+        $html .= "</div>";
+        return $html;
+    }
+
     public static function weblinkWidget($attr)
     {
 
@@ -241,13 +272,13 @@ class Admwswp_Public
             'all'
         );
 
-        // wp_enqueue_style(
-        //     $this->plugin_name . '-public',
-        //     plugin_dir_url(__FILE__) . 'css/admwswp-public.css',
-        //     array(),
-        //     $this->version,
-        //     'all'
-        // );
+        wp_enqueue_style(
+            $this->plugin_name . '-public',
+            plugin_dir_url(__FILE__) . 'css/admwswp-public.css',
+            array(),
+            $this->version,
+            'all'
+        );
 
         $portalAddress = get_field('portalAddress', 'options');
 
@@ -305,13 +336,13 @@ class Admwswp_Public
             true
         );
 
-        // wp_enqueue_script(
-        //     $this->plugin_name . '-public',
-        //     plugin_dir_url(__FILE__) . 'js/admwswp-public.js',
-        //     array( 'jquery' ),
-        //     $this->version,
-        //     false
-        // );
+        wp_enqueue_script(
+            $this->plugin_name . '-public',
+            plugin_dir_url(__FILE__) . 'js/admwswp-public.js',
+            array( 'jquery' , $this->plugin_name . '-weblink'),
+            $this->version,
+            false
+        );
 
         wp_add_inline_script(
             $this->plugin_name . '-weblink',
