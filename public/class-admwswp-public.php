@@ -314,13 +314,21 @@ class Admwswp_Public
          */
 
         $portalAddress = get_field('portalAddress', 'options');
-        $hashRouting = get_field('hashRouting', 'options');
-        $timezone = get_field('timezone', 'options');
+
+        $hashRouting = "false";
+        if (get_field('hashRouting', 'options')) {
+            $hashRouting = "true";
+        }
 
         $webLinkConfig = array(
-          'portalAddress' => $portalAddress,
-          'hashRouting' => $hashRouting,
-          'timezone' => $timezone,
+            'portalAddress' => $portalAddress,
+            'hashRouting' => $hashRouting,
+            'timezone' => get_field('timezone', 'options'),
+            'locale' => '',
+            'localeStrings' => array(),
+            'hooks' => array(
+                'onCheckoutNavigation' => ''
+            ),
         );
 
         $webLinkConfig = apply_filters('admwswp_weblink_config', $webLinkConfig);
@@ -346,7 +354,19 @@ class Admwswp_Public
 
         wp_add_inline_script(
             $this->plugin_name . '-weblink',
-            'var webLinkConfig = ' . stripslashes(json_encode($webLinkConfig)) . '; var weblink = new window.WebLink(webLinkConfig);'
+            'var webLinkConfig = {
+                portalAddress: "' . $webLinkConfig['portalAddress'] . '",
+                hashRouting: ' . $webLinkConfig['hashRouting'] . ',
+                timezone: "' . stripslashes($webLinkConfig['timezone']) . '",
+                locale: "' . $webLinkConfig['locale'] . '",
+                localeStrings: ' . stripslashes(json_encode($webLinkConfig['localeStrings'], JSON_UNESCAPED_UNICODE)) . ',
+                hooks: {
+                    onCheckoutNavigation: function(redirectUrl) {
+                        ' . $webLinkConfig['hooks']['onCheckoutNavigation'] . '
+                    },
+                }
+            };
+            var weblink = new window.WebLink(webLinkConfig);'
         );
     }
 }
