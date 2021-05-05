@@ -333,7 +333,7 @@ class Admwswp_Public
             ),
         );
 
-        if (ADMWSWP_WEBLINK_ENV === 'Staging') {
+        if (ADMWSWP_WEBLINK_ENV === 'staging') {
             $webLinkConfig['APIURL'] = 'https://weblink-api.stagingadministratehq.com/graphql';
             $webLinkConfig['portalAuthURL'] = 'https://portal-auth.stagingadministratehq.com/portal/guest';
         }
