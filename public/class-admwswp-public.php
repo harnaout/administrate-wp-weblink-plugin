@@ -324,12 +324,19 @@ class Admwswp_Public
             'portalAddress' => $portalAddress,
             'hashRouting' => $hashRouting,
             'timezone' => get_field('timezone', 'options'),
+            'APIURL' => 'https://weblink-api.administratehq.com/graphql',
+            'portalAuthURL' => 'https://portal-auth.administratehq.com/portal/guest',
             'locale' => '',
             'localeStrings' => array(),
             'hooks' => array(
                 'onCheckoutNavigation' => ''
             ),
         );
+
+        if (ADMWSWP_WEBLINK_ENV === 'Staging') {
+            $webLinkConfig['APIURL'] = 'https://weblink-api.stagingadministratehq.com/graphql';
+            $webLinkConfig['portalAuthURL'] = 'https://portal-auth.stagingadministratehq.com/portal/guest';
+        }
 
         $webLinkConfig = apply_filters('admwswp_weblink_config', $webLinkConfig);
 
@@ -355,6 +362,8 @@ class Admwswp_Public
         wp_add_inline_script(
             $this->plugin_name . '-weblink',
             'var webLinkConfig = {
+                APIURL: "' . $webLinkConfig['APIURL'] . '",
+                portalAuthURL: "' . $webLinkConfig['portalAuthURL'] . '",
                 portalAddress: "' . $webLinkConfig['portalAddress'] . '",
                 hashRouting: ' . $webLinkConfig['hashRouting'] . ',
                 timezone: "' . stripslashes($webLinkConfig['timezone']) . '",
