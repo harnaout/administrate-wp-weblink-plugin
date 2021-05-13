@@ -130,6 +130,7 @@ class Admwswp_Public
                     'cart_url' => '',
                     'screen_size' => 'desktop',
                     'pager_type' => 'loadMore',
+                    'show_cart_buttons'=> false,
                 ),
                 $attr
             )
@@ -152,6 +153,7 @@ class Admwswp_Public
             case 'PathObjectives':
                 if ($path_id) {
                     $webLinkArgs['pathId'] = $path_id;
+                    $webLinkArgs['showCartButtons'] = filter_var($show_cart_buttons, FILTER_VALIDATE_BOOLEAN);
                 }
                 break;
             case 'CourseDetails':
@@ -233,9 +235,19 @@ class Admwswp_Public
 	        document.getElementById(
 	        "' . $widgetId . '"),
 	        "'. $type . '"';
-        if ($webLinkArgs) {
-            $webLinkArgsJson = json_encode($webLinkArgs);
+        $weblinkMountArgs['args'] = $webLinkArgs;
+        $weblinkMountArgs['hooks'] = [
+            'onObjectiveSelection' => ''
+        ];
+        $weblinkMountArgs = apply_filters('admwswp_weblink_args', $weblinkMountArgs);
+        if ($weblinkMountArgs['args']) {
+            $webLinkArgsJson = json_encode($weblinkMountArgs['args']);
             $html .= "," . $webLinkArgsJson;
+        }
+        if ($type == 'PathObjectives' && !$webLinkArgs['showCartButtons'] && $weblinkMountArgs['hooks']['onObjectiveSelection'] != '') {
+            $html .= ",{
+                onObjectiveSelection: (objectiveId, eventId) => {".$weblinkMountArgs['hooks']['onObjectiveSelection']."},
+              },";
         }
         $html .= ');';
 
