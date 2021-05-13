@@ -89,10 +89,10 @@ class Admwswp_Admin
                 return "[administrate-widget type='$type']";
                 break;
             case 'PathDetails':
+            case 'PathObjectives':
                 $pathId = $attr['path_id'];
                 return "[administrate-widget type='$type' path_id='$pathId']";
                 break;
-
             default:
                 switch ($type) {
                     case 'Catalogue':

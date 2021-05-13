@@ -149,6 +149,11 @@ class Admwswp_Public
                     $webLinkArgs['id'] = $path_id;
                 }
                 break;
+            case 'PathObjectives':
+                if ($path_id) {
+                    $webLinkArgs['pathId'] = $path_id;
+                }
+                break;
             case 'CourseDetails':
             case 'Catalogue':
             case 'Category':
