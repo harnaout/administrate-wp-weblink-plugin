@@ -74,6 +74,10 @@ registerBlockType(
 							path.removeClass('hidden');
 						}
 
+						if ('PathObjectives' === value) {
+							path.removeClass('hidden');
+						}
+
 						if ('EventList' === value) {
 							course.removeClass('hidden');
 							location.removeClass('hidden');
@@ -134,6 +138,7 @@ registerBlockType(
 													{value: 'Catalogue', label: 'Catalogue'},
 													{value: 'CourseDetails', label: 'Course Details'},
 													{value: 'PathDetails', label: 'Path Details'},
+													{value: 'PathObjectives', label: 'Path Objectives'},
 													{value: 'Basket', label: 'Basket'},
 													{value: 'EventList', label: 'Event List'},
 													{value: 'Category', label: 'Category'},
