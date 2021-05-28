@@ -379,6 +379,7 @@ class Admwswp_Public
         wp_add_inline_script(
             $this->plugin_name . '-weblink',
             'var webLinkConfig = {
+                cartUrl: "' . $webLinkConfig['cartUrl'] . '",
                 APIURL: "' . $webLinkConfig['APIURL'] . '",
                 portalAuthURL: "' . $webLinkConfig['portalAuthURL'] . '",
                 portalAddress: "' . $webLinkConfig['portalAddress'] . '",
