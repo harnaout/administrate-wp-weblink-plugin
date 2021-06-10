@@ -101,6 +101,7 @@ class Admwswp_Public
                     'path_id' => '',
                     'course_code' => '',
                     'location_name' => '',
+                    'locations' => '',
                     'to_date' => '',
                     'from_date' => '',
                     'catalogue_type' => 'All',
@@ -166,6 +167,10 @@ class Admwswp_Public
 
                 if ($location_name) {
                     $webLinkArgs['location'] = $location_name;
+                }
+
+                if ($locations) {
+                    $webLinkArgs['locations'] = explode(",", $locations);
                 }
 
                 if ($category_id) {
