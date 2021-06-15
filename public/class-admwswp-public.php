@@ -110,6 +110,7 @@ class Admwswp_Public
                     'location_filter' => false,
                     'course_filter' => false,
                     'category_filter' => false,
+                    'event_list_order' => '',
                     'event_list_order_field' => 'title',
                     'event_list_order_direction' => 'asc',
                     'event_title' => false,
@@ -201,6 +202,18 @@ class Admwswp_Public
 
                 $webLinkArgs['eventListOrder']['field'] = $event_list_order_field;
                 $webLinkArgs['eventListOrder']['direction'] = $event_list_order_direction;
+
+                if ($event_list_order) {
+                    $webLinkArgs['eventListOrder'] = array();
+                    $event_list_order = explode(",", $event_list_order);
+                    foreach ($event_list_order as $orderBy) {
+                        $order = explode("-", trim($orderBy));
+                        $webLinkArgs['eventListOrder'][] = array(
+                            'field' => trim($order[0]),
+                            'direction' => trim($order[1]),
+                        );
+                    }
+                }
 
                 $webLinkArgs['showTitleColumn'] = filter_var($event_title, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['showLocationColumn'] = filter_var($event_location, FILTER_VALIDATE_BOOLEAN);
