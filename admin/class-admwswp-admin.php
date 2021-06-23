@@ -83,7 +83,7 @@ class Admwswp_Admin
                 unset($attr['screen_size']);
             break;
             case 'Cart':
-                $hideEditButton = $attr['edit_button'];
+                $hideEditButton = isset($attr['edit_button']) ? $attr['edit_button'] : false;
                 return "[administrate-widget type='$type' hide_edit_button='$hideEditButton']";
                 break;
             case 'SearchBar':
