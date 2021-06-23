@@ -42,6 +42,7 @@ registerBlockType(
 						var sorting = jQuery('.admwswp-sorting');
 						var filters = jQuery('.admwswp-filters');
 						var columns = jQuery('.admwswp-columns');
+						var cartOptions = jQuery('.admwswp-cart-options');
 
 						catalogueType.addClass('hidden');
 						category.addClass('hidden');
@@ -53,6 +54,7 @@ registerBlockType(
 						filters.addClass('hidden');
 						columns.addClass('hidden');
 						pagerType.addClass('hidden');
+						cartOptions.addClass('hidden');
 
 						if ('Catalogue' === value) {
 							catalogueType.removeClass('hidden');
@@ -92,6 +94,10 @@ registerBlockType(
 							sorting.removeClass('hidden');
 							filters.removeClass('hidden');
 							columns.removeClass('hidden');
+						}
+
+						if ('Cart' === value) {
+							cartOptions.removeClass('hidden');
 						}
 				}
 
@@ -562,6 +568,29 @@ registerBlockType(
 											}
 										)
 
+									]
+								),
+								createElement(
+									PanelBody,
+									{
+										title: "Cart Options",
+										initialOpen: false,
+										className: 'admwswp-cart-options',
+										icon: 'columns'
+									},
+									[
+										createElement(
+											ToggleControl,
+											{
+												className: 'admwswp-edit_button',
+												label: __('Hide Edit Button'),
+												checked: attributes.edit_button,
+												onChange: (value) => {
+													setAttributes({edit_button: value});
+												},
+												type: 'bool',
+											}
+										)
 									]
 								),
 

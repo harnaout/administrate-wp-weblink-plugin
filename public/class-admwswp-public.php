@@ -133,6 +133,7 @@ class Admwswp_Public
                     'screen_size' => 'desktop',
                     'pager_type' => 'loadMore',
                     'show_cart_buttons'=> false,
+                    'hide_edit_button' => false,
                 ),
                 $attr
             )
@@ -141,6 +142,9 @@ class Admwswp_Public
         $webLinkArgs = array();
 
         switch ($type) {
+            case 'Cart':
+                $webLinkArgs['hideEditItemButton'] = filter_var($hide_edit_button, FILTER_VALIDATE_BOOLEAN);
+                break;
             case 'Basket':
                 $webLinkArgs['showBasketPopover'] = filter_var($show_basket_popover, FILTER_VALIDATE_BOOLEAN);
                 if ($cart_url) {

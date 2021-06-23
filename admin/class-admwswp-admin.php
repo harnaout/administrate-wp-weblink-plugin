@@ -83,6 +83,9 @@ class Admwswp_Admin
                 unset($attr['screen_size']);
             break;
             case 'Cart':
+                $hideEditButton = $attr['edit_button'];
+                return "[administrate-widget type='$type' hide_edit_button='$hideEditButton']";
+                break;
             case 'SearchBar':
             case 'CategoryDropdown':
             case 'GiftVoucherBalance':
@@ -282,6 +285,10 @@ class Admwswp_Admin
                     'lms_time' => array(
                         'type' => 'bool',
                         'default' => get_field('showLmsTimeColumn', 'options')
+                    ),
+                    'edit_button' => array(
+                        'type' => 'bool',
+                        'default' => get_field('cartHideEditButton', 'options')
                     ),
                 )
             )
