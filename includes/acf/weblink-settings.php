@@ -74,6 +74,41 @@ if (function_exists('acf_add_local_field_group')) :
       'ui_off_text' => '',
     ),
     array(
+      'key' => 'field_60e321777f0c3',
+      'label' => 'Cart',
+      'name' => '',
+      'type' => 'tab',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array(
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+      'placement' => 'top',
+      'endpoint' => 0,
+    ),
+    array(
+      'key' => 'field_60e3201646680',
+      'label' => 'Cart Hide Edit Button',
+      'name' => 'cartHideEditButton',
+      'type' => 'true_false',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array(
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+      'message' => '',
+      'default_value' => 0,
+      'ui' => 1,
+      'ui_on_text' => '',
+      'ui_off_text' => '',
+    ),
+    array(
       'key' => 'field_5e55369acb447',
       'label' => 'Catalogue (widget)',
       'name' => '',
@@ -206,6 +241,25 @@ if (function_exists('acf_add_local_field_group')) :
       'ui_off_text' => '',
     ),
     array(
+      'key' => 'field_60e3204346681',
+      'label' => 'Show Time Zone',
+      'name' => 'showTimezone',
+      'type' => 'true_false',
+      'instructions' => '',
+      'required' => 0,
+      'conditional_logic' => 0,
+      'wrapper' => array(
+        'width' => '',
+        'class' => '',
+        'id' => '',
+      ),
+      'message' => '',
+      'default_value' => 1,
+      'ui' => 1,
+      'ui_on_text' => '',
+      'ui_off_text' => '',
+    ),
+    array(
       'key' => 'field_5e567d5abf5cb',
       'label' => 'Events List Default Order',
       'name' => '',
@@ -256,8 +310,7 @@ if (function_exists('acf_add_local_field_group')) :
             'classroomStart' => 'Class Room Start',
             'lmsStart' => 'LMS Start',
           ),
-          'default_value' => array(
-          ),
+          'default_value' => false,
           'allow_null' => 1,
           'multiple' => 0,
           'ui' => 1,
@@ -624,9 +677,6 @@ if (function_exists('acf_add_local_field_group')) :
       'message' => '[administrate-widget type="Basket"]
 [administrate-widget type="Cart"]
 
-# Gift Voucher Shortcodes
-[administrate-widget type="GiftVoucherBalance"]
-
 [administrate-widget type="Category"]
 [administrate-widget type="CategoryDropdown"]
 
@@ -647,8 +697,11 @@ if (function_exists('acf_add_local_field_group')) :
 
 [administrate-widget type=\'Catalogue\' catalogue_type=\'course\' date_filter=\'true\' location_filter=\'true\' course_filter=\'true\' category_filter=\'true\' event_title=\'true\' event_location=\'true\' event_venue=\'true\' event_start_date=\'true\' event_duration=\'true\' event_time=\'true\' event_places_remaining=\'true\' event_price=\'true\' event_addtocart=\'true\' classroom_start_date=\'true\' classroom_duration=\'true\' classroom_time=\'true\' lms_start_date=\'true\' lms_duration=\'true\' lms_time=\'true\']
 
-  [admwswp-addToCart path_id="Path ID" class=""]
-  [admwswp-addToCart course_id="Course ID" class=""]',
+[admwswp-addToCart path_id="Path ID" class=""]
+[admwswp-addToCart course_id="Course ID" class=""]
+
+# Gift Voucher Shortcodes
+[administrate-widget type="GiftVoucherBalance"]',
       'new_lines' => 'wpautop',
       'esc_html' => 0,
     ),

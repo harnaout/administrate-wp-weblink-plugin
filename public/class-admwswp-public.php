@@ -134,6 +134,7 @@ class Admwswp_Public
                     'pager_type' => 'loadMore',
                     'show_cart_buttons'=> false,
                     'hide_edit_button' => false,
+                    'show_time_zone' => true
                 ),
                 $attr
             )
@@ -237,6 +238,7 @@ class Admwswp_Public
                 $webLinkArgs['showLmsDurationColumn'] = filter_var($lms_duration, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['showLmsTimeColumn'] = filter_var($lms_time, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['pagerType'] = $pager_type;
+                $webLinkArgs['showTimezone'] = filter_var($show_time_zone, FILTER_VALIDATE_BOOLEAN);
                 break;
             default:
                 break;

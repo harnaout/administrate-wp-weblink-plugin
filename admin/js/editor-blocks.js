@@ -33,7 +33,7 @@ registerBlockType(
 
 				function updateSections(value) {
 					  var catalogueType = jQuery('.admwswp-catalogue-type');
-					  	var pagerType = jQuery('.admwswp-pager-type');
+					  var pagerType = jQuery('.admwswp-pager-type');
 						var category = jQuery('.admwswp-catalogue-category');
 						var path = jQuery('.admwswp-path');
 						var course = jQuery('.admwswp-course');
@@ -43,6 +43,7 @@ registerBlockType(
 						var filters = jQuery('.admwswp-filters');
 						var columns = jQuery('.admwswp-columns');
 						var cartOptions = jQuery('.admwswp-cart-options');
+						var eventsListOptions = jQuery('.admwswp-events-list-options');
 
 						catalogueType.addClass('hidden');
 						category.addClass('hidden');
@@ -55,6 +56,7 @@ registerBlockType(
 						columns.addClass('hidden');
 						pagerType.addClass('hidden');
 						cartOptions.addClass('hidden');
+						eventsListOptions.addClass('hidden');
 
 						if ('Catalogue' === value) {
 							catalogueType.removeClass('hidden');
@@ -88,6 +90,8 @@ registerBlockType(
 							sorting.removeClass('hidden');
 							filters.removeClass('hidden');
 							columns.removeClass('hidden');
+							eventsListOptions.removeClass('hidden');
+							pagerType.removeClass('hidden');
 						}
 
 						if ('Category' === value) {
@@ -134,7 +138,6 @@ registerBlockType(
 												label: __('Widget Type'),
 												onChange: (value) => {
 													setAttributes({type: value});
-
 													updateSections(value);
 
 												},
@@ -271,6 +274,29 @@ registerBlockType(
 												type: 'date',
 											}
 										),
+									]
+								),
+								createElement(
+									PanelBody,
+									{
+										title: "Events List Options",
+										initialOpen: false,
+										className: 'admwswp-events-list-options',
+										icon: 'columns'
+									},
+									[
+										createElement(
+											ToggleControl,
+											{
+												className: 'admwswp-show_time_zone',
+												label: __('Show Time Zone'),
+												checked: attributes.show_time_zone,
+												onChange: (value) => {
+													setAttributes({show_time_zone: value});
+												},
+												type: 'bool',
+											}
+										)
 									]
 								),
 								createElement(
@@ -593,7 +619,6 @@ registerBlockType(
 										)
 									]
 								),
-
 						]
 					)
 				] );
