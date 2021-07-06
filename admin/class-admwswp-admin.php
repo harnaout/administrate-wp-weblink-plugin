@@ -72,6 +72,12 @@ class Admwswp_Admin
                 'icon_url' => 'dashicons-admin-settings',
             ));
         endif;
+
+        /**
+         * ADD ACFs
+         * core plugin.
+         */
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/acf.php';
     }
 
     public function weblinkWidget($attr)
