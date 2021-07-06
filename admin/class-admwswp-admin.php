@@ -81,7 +81,7 @@ class Admwswp_Admin
             case 'Basket':
                 unset($attr['cart_url']);
                 unset($attr['screen_size']);
-            break;
+                break;
             case 'Cart':
                 $hideEditButton = isset($attr['edit_button']) ? $attr['edit_button'] : false;
                 return "[administrate-widget type='$type' hide_edit_button='$hideEditButton']";
@@ -104,6 +104,7 @@ class Admwswp_Admin
                         unset($attr['location_name']);
                         unset($attr['to_date']);
                         unset($attr['from_date']);
+                        unset($attr['show_time_zone']);
                         break;
                     case 'CourseDetails':
                         unset($attr['catalogue_type']);
@@ -111,6 +112,7 @@ class Admwswp_Admin
                         unset($attr['location_name']);
                         unset($attr['to_date']);
                         unset($attr['from_date']);
+                        unset($attr['show_time_zone']);
                         break;
                     case 'EventList':
                         unset($attr['catalogue_type']);
@@ -123,6 +125,7 @@ class Admwswp_Admin
                         unset($attr['location_name']);
                         unset($attr['to_date']);
                         unset($attr['from_date']);
+                        unset($attr['show_time_zone']);
                         break;
                 }
 
@@ -289,6 +292,10 @@ class Admwswp_Admin
                     'edit_button' => array(
                         'type' => 'bool',
                         'default' => get_field('cartHideEditButton', 'options')
+                    ),
+                    'show_time_zone' => array(
+                        'type' => 'bool',
+                        'default' => get_field('showTimezone', 'options')
                     ),
                 )
             )
