@@ -132,9 +132,14 @@ class Admwswp_Public
                     'cart_url' => '',
                     'screen_size' => 'desktop',
                     'pager_type' => 'loadMore',
-                    'show_cart_buttons'=> false,
+                    'show_cart_buttons' => false,
                     'hide_edit_button' => false,
-                    'show_time_zone' => true
+                    'show_time_zone' => true,
+                    'more_filter' => false,
+                    'from_time_of_day' => null,
+                    'to_time_of_day' => null,
+                    'days_of_week' => null,
+                    'minimum_places_remaining' => null,
                 ),
                 $attr
             )
@@ -198,9 +203,28 @@ class Admwswp_Public
                 if ($to_date) {
                     $webLinkArgs['toDate'] = $to_date;
                 }
+                if ($to_date) {
+                    $webLinkArgs['toDate'] = $to_date;
+                }
+
+                if ($more_filter) {
+                    if ($from_time_of_day) {
+                        $webLinkArgs['fromTimeOfDay'] = $from_time_of_day;
+                    }
+                    if ($to_time_of_day) {
+                        $webLinkArgs['toTimeOfDay'] = $to_time_of_day;
+                    }
+                    if ($days_of_week) {
+                        $webLinkArgs['daysOfWeek'] = explode(",", $days_of_week);
+                    }
+                    if ($minimum_places_remaining) {
+                        $webLinkArgs['minimumPlacesRemaining'] = $minimum_places_remaining;
+                    }
+                }
 
                 $webLinkArgs['showDateFilter'] = filter_var($date_filter, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['showLocationFilter'] = filter_var($location_filter, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showMoreFilter'] = filter_var($more_filter, FILTER_VALIDATE_BOOLEAN);
 
                 $webLinkArgs['showCourseFilter'] = filter_var($course_filter, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['showCategoryFilter'] = filter_var($category_filter, FILTER_VALIDATE_BOOLEAN);
@@ -258,10 +282,10 @@ class Admwswp_Public
         $html .= 'weblink.mount(
 	        document.getElementById(
 	        "' . $widgetId . '"),
-	        "'. $type . '"';
+	        "' . $type . '"';
         $weblinkMountArgs['args'] = $webLinkArgs;
         $weblinkMountArgs['hooks'] = [
-            'onObjectiveSelection' => ''
+            'onObjectiveSelection' => '',
         ];
         $weblinkMountArgs = apply_filters('admwswp_weblink_args', $weblinkMountArgs);
         if ($weblinkMountArgs['args']) {
@@ -270,7 +294,7 @@ class Admwswp_Public
         }
         if ($type == 'PathObjectives' && !$webLinkArgs['showCartButtons'] && $weblinkMountArgs['hooks']['onObjectiveSelection'] != '') {
             $html .= ",{
-                onObjectiveSelection: (objectiveId, eventId) => {".$weblinkMountArgs['hooks']['onObjectiveSelection']."},
+                onObjectiveSelection: (objectiveId, eventId) => {" . $weblinkMountArgs['hooks']['onObjectiveSelection'] . "},
               },";
         }
         $html .= ');';
@@ -370,7 +394,7 @@ class Admwswp_Public
             'locale' => '',
             'localeStrings' => array(),
             'hooks' => array(
-                'onCheckoutNavigation' => ''
+                'onCheckoutNavigation' => '',
             ),
         );
 
@@ -395,7 +419,7 @@ class Admwswp_Public
         wp_enqueue_script(
             $this->plugin_name . '-public',
             plugin_dir_url(__FILE__) . 'js/admwswp-public.js',
-            array( 'jquery' , $this->plugin_name . '-weblink'),
+            array('jquery', $this->plugin_name . '-weblink'),
             $this->version,
             false
         );
