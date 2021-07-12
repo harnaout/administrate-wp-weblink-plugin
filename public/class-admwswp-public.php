@@ -140,6 +140,7 @@ class Admwswp_Public
                     'to_time_of_day' => null,
                     'days_of_week' => null,
                     'minimum_places_remaining' => null,
+                    'show_remaining_places_filter' => false,
                 ),
                 $attr
             )
@@ -166,6 +167,8 @@ class Admwswp_Public
                 if ($path_id) {
                     $webLinkArgs['pathId'] = $path_id;
                     $webLinkArgs['showCartButtons'] = filter_var($show_cart_buttons, FILTER_VALIDATE_BOOLEAN);
+                    $webLinkArgs['showRemainingPlacesFilter'] = filter_var($show_remaining_places_filter, FILTER_VALIDATE_BOOLEAN);
+                    $webLinkArgs['minimumRemainingPlaces'] = $minimum_places_remaining;
                 }
                 break;
             case 'CourseDetails':
