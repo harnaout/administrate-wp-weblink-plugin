@@ -411,11 +411,13 @@ class Admwswp_Public
         $webLinkJs = 'https://' . $portalAddress . '/static/js/weblink.bundle.min.js';
         $webLinkJs = apply_filters('admwswp_weblink_js', $webLinkJs);
 
+        $webLinkJsVersion = apply_filters('admwswp_weblink_js_ver', $this->version);
+
         wp_enqueue_script(
             $this->plugin_name . '-weblink',
             $webLinkJs,
             array('jquery'),
-            $this->version,
+            $webLinkJsVersion,
             true
         );
 
