@@ -141,6 +141,7 @@ class Admwswp_Public
                     'days_of_week' => null,
                     'minimum_places_remaining' => null,
                     'show_remaining_places_filter' => false,
+                    'id' => '',
                 ),
                 $attr
             )
@@ -271,7 +272,12 @@ class Admwswp_Public
                 break;
         }
 
-        $widgetId = "weblink_" . $type . "_" . time() . "_" . $screen_size;
+        $widgetId = "weblink_" . $type . "_" . time() . "_" . trim($screen_size);
+
+        if (trim($id)) {
+            $widgetId = trim($id);
+        }
+
         $html = "<div id='weblink-widget-container' class='weblink-$type-container'>";
         $html .= "<div id='$widgetId' class='weblink-$type'>";
         $html .= "<div class='fa-3x text-center'>";
