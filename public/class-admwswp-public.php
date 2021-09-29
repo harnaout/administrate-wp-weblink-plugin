@@ -395,6 +395,7 @@ class Admwswp_Public
         }
 
         $webLinkConfig = array(
+            'cartUrl' => '',
             'portalAddress' => $portalAddress,
             'hashRouting' => $hashRouting,
             'timezone' => get_field('timezone', 'options'),
