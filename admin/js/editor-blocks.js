@@ -592,6 +592,18 @@ registerBlockType(
 												},
 												type: 'bool',
 											}
+										),
+										createElement(
+											ToggleControl,
+											{
+												className: 'admwswp-show_locale',
+												label: __('Show Locale (language)'),
+												checked: attributes.show_locale,
+												onChange: (value) => {
+													setAttributes({show_locale: value});
+												},
+												type: 'bool',
+											}
 										)
 
 									]
