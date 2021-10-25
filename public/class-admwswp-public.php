@@ -142,6 +142,7 @@ class Admwswp_Public
                     'minimum_places_remaining' => null,
                     'show_remaining_places_filter' => false,
                     'id' => '',
+                    'show_locale' => false,
                 ),
                 $attr
             )
@@ -267,15 +268,21 @@ class Admwswp_Public
                 $webLinkArgs['showLmsTimeColumn'] = filter_var($lms_time, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['pagerType'] = $pager_type;
                 $webLinkArgs['showTimezone'] = filter_var($show_time_zone, FILTER_VALIDATE_BOOLEAN);
+                $webLinkArgs['showLocale'] = filter_var($show_locale, FILTER_VALIDATE_BOOLEAN);
                 break;
             default:
                 break;
         }
 
-        $widgetId = "weblink_" . $type . "_" . time() . "_" . trim($screen_size);
+        $widgetId = "weblink_" . $type;
 
         if (trim($id)) {
-            $widgetId = trim($id);
+            $widgetId .= "_" . trim($id);
+        } else {
+            $widgetId .= "_" . time();
+        }
+        if (trim($screen_size)) {
+            $widgetId .= "_" . trim($screen_size);
         }
 
         $html = "<div id='weblink-widget-container' class='weblink-$type-container'>";
