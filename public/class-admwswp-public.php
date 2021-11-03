@@ -171,6 +171,10 @@ class Admwswp_Public
                     $webLinkArgs['showCartButtons'] = filter_var($show_cart_buttons, FILTER_VALIDATE_BOOLEAN);
                     $webLinkArgs['showRemainingPlacesFilter'] = filter_var($show_remaining_places_filter, FILTER_VALIDATE_BOOLEAN);
                     $webLinkArgs['minimumRemainingPlaces'] = $minimum_places_remaining;
+                    if($locations) {
+                        $webLinkArgs['location'] = $locations;
+                    }
+                    $webLinkArgs['showLocationFilter'] = filter_var($location_filter, FILTER_VALIDATE_BOOLEAN);
                 }
                 break;
             case 'CourseDetails':
