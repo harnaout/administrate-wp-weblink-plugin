@@ -189,6 +189,8 @@ class Admwswp
         $this->loader->add_shortcode('administrate-widget', $plugin_public, 'weblinkWidget');
 
         $this->loader->add_shortcode('admwswp-addToCart', $plugin_public, 'addToCart');
+
+        $this->loader->add_filter('clean_url', $plugin_public, 'add_async_forscript');
     }
 
     /**
