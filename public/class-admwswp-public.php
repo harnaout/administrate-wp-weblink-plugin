@@ -297,7 +297,9 @@ class Admwswp_Public
         $html .= "</div>";
         $html .= "</div>";
 
-        $html .= "<script type='text/javascript'>";
+        $html .= "<script defer type='text/javascript'>";
+        $html .= "var weblinkInterval$widgetId = setInterval(function() { if (typeof weblink !== 'undefined') { ";
+        
         $html .= "jQuery(function($) {";
         $html .= 'weblink.mount(
 	        document.getElementById(
@@ -320,9 +322,21 @@ class Admwswp_Public
         $html .= ');';
 
         $html .= "});";
+        $html .= "clearInterval(weblinkInterval$widgetId); } }, 500);"; // interval ending
         $html .= "</script>";
 
         return $html;
+    }
+
+    public function add_async_forscript($url)
+    {
+        if (strpos($url, '#asyncload') === false) {
+            return $url;
+        } elseif (is_admin()) {
+            return str_replace('#asyncload', '', $url);
+        } else {
+            return str_replace('#asyncload', '', $url)."' async='async";
+        }
     }
 
     /**
@@ -433,18 +447,17 @@ class Admwswp_Public
 
         wp_enqueue_script(
             $this->plugin_name . '-weblink',
-            $webLinkJs,
+            $webLinkJs . '#asyncload',
             array('jquery'),
             $webLinkJsVersion,
             true
         );
-
         wp_enqueue_script(
             $this->plugin_name . '-public',
-            plugin_dir_url(__FILE__) . 'js/admwswp-public.js',
+            plugin_dir_url(__FILE__) . 'js/admwswp-public.js#asyncload',
             array('jquery', $this->plugin_name . '-weblink'),
-            $this->version,
-            false
+            $webLinkJsVersion,
+            true
         );
 
         wp_add_inline_script(
@@ -464,7 +477,14 @@ class Admwswp_Public
                     },
                 }
             };
-            var weblink = new window.WebLink(webLinkConfig);'
+            var weblink;
+            var weblinkInterval = setInterval(function () {
+                if (window.WebLink) {
+                    weblink = new window.WebLink(webLinkConfig);
+                    clearInterval(weblinkInterval);
+                }
+            }, 500);
+            '
         );
     }
 }
