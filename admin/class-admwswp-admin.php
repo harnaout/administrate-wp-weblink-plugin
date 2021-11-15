@@ -97,6 +97,12 @@ class Admwswp_Admin
             case 'GiftVoucherBalance':
                 return "[administrate-widget type='$type']";
                 break;
+            case 'TrainingRequest':
+                if (isset($attr['interest_id'])) {
+                    $interestId = $attr['interest_id'];
+                    return "[administrate-widget type='$type' interest_id='$interestId']";
+                }
+                break;
             case 'PathDetails':
             case 'PathObjectives':
                 $pathId = $attr['path_id'];

@@ -687,6 +687,8 @@ if (function_exists('acf_add_local_field_group')) :
 [administrate-widget type="PathDetails" path_id="ID"]
 [administrate-widget type="PathObjectives" path_id="ID"]
 
+[administrate-widget type="TrainingRequest" interest_id="ID"]
+
 [administrate-widget type="EventList"]
 [administrate-widget type="EventList" category_id="ID"]
 [administrate-widget type="EventList" course_code="CODE"]

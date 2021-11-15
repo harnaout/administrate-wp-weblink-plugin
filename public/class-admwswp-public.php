@@ -100,6 +100,7 @@ class Admwswp_Public
                     'category_id' => '',
                     'path_id' => '',
                     'course_code' => '',
+                    'interest_id' => '',
                     'location_name' => '',
                     'locations' => '',
                     'to_date' => '',
@@ -163,6 +164,11 @@ class Admwswp_Public
             case 'PathDetails':
                 if ($path_id) {
                     $webLinkArgs['id'] = $path_id;
+                }
+                break;
+            case 'TrainingRequest':
+                if($interest_id) {
+                    $webLinkArgs['interestId'] = $interest_id;
                 }
                 break;
             case 'PathObjectives':
