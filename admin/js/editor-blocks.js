@@ -44,6 +44,7 @@ registerBlockType(
 						var columns = jQuery('.admwswp-columns');
 						var cartOptions = jQuery('.admwswp-cart-options');
 						var eventsListOptions = jQuery('.admwswp-events-list-options');
+						var trainingRequest = jQuery('.admwswp-training-request');
 
 						catalogueType.addClass('hidden');
 						category.addClass('hidden');
@@ -57,6 +58,11 @@ registerBlockType(
 						pagerType.addClass('hidden');
 						cartOptions.addClass('hidden');
 						eventsListOptions.addClass('hidden');
+						trainingRequest.addClass('hidden');
+
+						if ('TrainingRequest' === value) {
+							trainingRequest.removeClass('hidden');
+						}
 
 						if ('Catalogue' === value) {
 							catalogueType.removeClass('hidden');
@@ -148,6 +154,7 @@ registerBlockType(
 													{value: 'CourseDetails', label: 'Course Details'},
 													{value: 'PathDetails', label: 'Path Details'},
 													{value: 'PathObjectives', label: 'Path Objectives'},
+													{value: 'TrainingRequest', label: 'Training Request'},
 													{value: 'Basket', label: 'Basket'},
 													{value: 'EventList', label: 'Event List'},
 													{value: 'Category', label: 'Category'},
@@ -199,6 +206,18 @@ registerBlockType(
 												label: __('Course Code'),
 												onChange: (value) => {
 													setAttributes({course_code: value});
+												},
+												type: 'text',
+											}
+										),
+										createElement(
+											TextControl,
+											{
+												className: 'admwswp-training-request hidden',
+												value: attributes.interest_id,
+												label: __('Interest Id'),
+												onChange: (value) => {
+													setAttributes({interest_id: value});
 												},
 												type: 'text',
 											}
