@@ -1,6 +1,9 @@
 jQuery(function($) {
 	$(document).ready(function () {
-		$('.admwswp-addToCart', 'body').on('click', function(){
+		$('body').on(
+			'click',
+			'.admwswp-addToCart',
+			function(){
 			if (weblink !== undefined) {
 				var pathId = $(this).data('path_id');
 				if (pathId) {
