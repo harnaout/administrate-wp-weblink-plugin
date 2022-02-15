@@ -146,16 +146,19 @@ class Admwswp_Public
         );
 
         $webLinkArgs = array();
+        $showAddToCart = true;
 
         switch ($type) {
             case 'Cart':
                 $webLinkArgs['hideEditItemButton'] = filter_var($hide_edit_button, FILTER_VALIDATE_BOOLEAN);
+                $showAddToCart = get_field('showAddToCart', 'options');
                 break;
             case 'Basket':
                 $webLinkArgs['showBasketPopover'] = filter_var($show_basket_popover, FILTER_VALIDATE_BOOLEAN);
                 if ($cart_url) {
                     $webLinkArgs['cartUrl'] = $cart_url;
                 }
+                $showAddToCart = get_field('showAddToCart', 'options');
                 break;
             case 'PathDetails':
                 if ($path_id) {
@@ -326,8 +329,11 @@ class Admwswp_Public
         $html .= "});";
         $html .= "clearInterval(weblinkInterval$widgetId); } }, 500);"; // interval ending
         $html .= "</script>";
-
-        return $html;
+        
+        if ($showAddToCart) {
+            return $html;
+        }
+        return '';
     }
 
     public function add_async_forscript($url)
