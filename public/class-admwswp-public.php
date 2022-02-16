@@ -118,7 +118,7 @@ class Admwswp_Public
                     'event_time' => false,
                     'event_places_remaining' => false,
                     'event_price' => false,
-                    'event_addtocart' => false,
+                    'event_addtocart' => true,
                     'classroom_start_date' => false,
                     'classroom_duration' => false,
                     'classroom_time' => false,
@@ -129,7 +129,7 @@ class Admwswp_Public
                     'cart_url' => '',
                     'screen_size' => 'desktop',
                     'pager_type' => 'loadMore',
-                    'show_cart_buttons' => false,
+                    'show_cart_buttons' => true,
                     'hide_edit_button' => false,
                     'show_time_zone' => true,
                     'more_filter' => false,
@@ -180,6 +180,9 @@ class Admwswp_Public
                         $webLinkArgs['location'] = $locations;
                     }
                     $webLinkArgs['showLocationFilter'] = filter_var($location_filter, FILTER_VALIDATE_BOOLEAN);
+
+                    // Override showCartButtons based on showAddToCart option
+                    $webLinkArgs['showCartButtons'] = get_field('showAddToCart', 'options');
                 }
                 break;
             case 'CourseDetails':
@@ -278,6 +281,10 @@ class Admwswp_Public
                 $webLinkArgs['pagerType'] = $pager_type;
                 $webLinkArgs['showTimezone'] = filter_var($show_time_zone, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['showLocale'] = filter_var($show_locale, FILTER_VALIDATE_BOOLEAN);
+
+                // Override showAddToCartColumn based on showAddToCart option
+                $webLinkArgs['showAddToCartColumn'] = get_field('showAddToCart', 'options');
+
                 break;
             default:
                 break;
