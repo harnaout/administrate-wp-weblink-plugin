@@ -129,7 +129,7 @@ class Admwswp_Public
                     'cart_url' => '',
                     'screen_size' => 'desktop',
                     'pager_type' => 'loadMore',
-                    'show_cart_buttons' => false,
+                    'show_cart_buttons' => true,
                     'hide_edit_button' => false,
                     'show_time_zone' => true,
                     'more_filter' => false,
@@ -180,6 +180,9 @@ class Admwswp_Public
                         $webLinkArgs['location'] = $locations;
                     }
                     $webLinkArgs['showLocationFilter'] = filter_var($location_filter, FILTER_VALIDATE_BOOLEAN);
+
+                    // Override showCartButtons based on showAddToCart option
+                    $webLinkArgs['showCartButtons'] = get_field('showAddToCart', 'options');
                 }
                 break;
             case 'CourseDetails':
