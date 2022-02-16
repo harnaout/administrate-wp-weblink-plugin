@@ -57,6 +57,10 @@ class Admwswp_Public
 
     public static function addToCart($attr)
     {
+        if (!get_field('showAddToCart', 'options')) {
+            return '';
+        }
+
         extract(
             shortcode_atts(
                 array(
