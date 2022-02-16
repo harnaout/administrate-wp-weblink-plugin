@@ -118,7 +118,7 @@ class Admwswp_Public
                     'event_time' => false,
                     'event_places_remaining' => false,
                     'event_price' => false,
-                    'event_addtocart' => false,
+                    'event_addtocart' => true,
                     'classroom_start_date' => false,
                     'classroom_duration' => false,
                     'classroom_time' => false,
@@ -278,6 +278,10 @@ class Admwswp_Public
                 $webLinkArgs['pagerType'] = $pager_type;
                 $webLinkArgs['showTimezone'] = filter_var($show_time_zone, FILTER_VALIDATE_BOOLEAN);
                 $webLinkArgs['showLocale'] = filter_var($show_locale, FILTER_VALIDATE_BOOLEAN);
+
+                // Override showAddToCartColumn based on showAddToCart option
+                $webLinkArgs['showAddToCartColumn'] = get_field('showAddToCart', 'options');
+
                 break;
             default:
                 break;
