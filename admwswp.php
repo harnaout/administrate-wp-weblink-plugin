@@ -34,7 +34,7 @@ if (! defined('ADMWSWP_WEBLINK_ENV')) {
     define('ADMWSWP_WEBLINK_ENV', 'prod'); // prod or staging
 }
 
-define('ADMWSWP_VERSION', '1.6.0');
+define('ADMWSWP_VERSION', '1.6.1');
 define('ADMWSWP_TEXTDOMAIN', 'admwswp');
 define('ADMWSWP_PLUGIN_NAME', 'administrate-wp-weblink-plugin/admwswp.php');
 // List of plugins separated by comas.

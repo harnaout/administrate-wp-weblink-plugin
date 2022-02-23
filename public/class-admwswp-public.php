@@ -80,9 +80,46 @@ class Admwswp_Public
             $data = "data-course_id=" . $course_id;
         }
 
-        $html = "<div class='admwswp-addToCart $class' $data>";
+        $html = "<div class='admwswp-btn admwswp-addToCart admwswp-waitWeblink $class' $data>";
         $html .= __('Add to Cart', 'admwswp');
+        $html .= "<div class='admwswp-loader fa-3x text-center'>
+                    <i class='fas fa-circle-notch fa-spin'></i>
+                </div>";
         $html .= "</div>";
+        return $html;
+    }
+
+    public static function eventRequest($attr)
+    {
+        extract(
+            shortcode_atts(
+                array(
+                    'button_text' => __('Request Training', 'admwswp'),
+                    'tms_id' => '',
+                    'wrapper_id' => 'admwswp-eventRequestPopup',
+                    'class' => 'btn btn-lg btn-primary',
+                    'popup_title' => __('Request Training', 'admwswp'),
+                    'popup_class' => 'admwswp-dialog',
+                ),
+                $attr
+            )
+        );
+        $html = "";
+        if ($tms_id && $wrapper_id) {
+            $data = "data-tms_id=" . $tms_id;
+            $data .= " data-wrapper_id='" . $wrapper_id . "'";
+            $data .= " data-popup_title='" . $popup_title . "'";
+            $data .= " data-popup_class='" . $popup_class . "'";
+
+            $html = "
+            <div class='admwswp-btn admwswp-eventRequest admwswp-waitWeblink $class' $data>$button_text</div>
+            <div class='admwswp-eventRequestPopup' id=$wrapper_id>
+                <div class='admwswp-loader fa-3x text-center'>
+                    <i class='fas fa-circle-notch fa-spin'></i>
+                </div>
+            </div>
+            ";
+        }
         return $html;
     }
 

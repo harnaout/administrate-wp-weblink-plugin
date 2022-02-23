@@ -2,10 +2,75 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
-.admwswp-addToCart {
+.admwswp-loader {
+  display: none;
+  visibility: hidden;
+}
+
+.admwswp-btn.admwswp-waitWeblink {
+  opacity: 0.8;
+}
+
+.admwswp-btn.admwswp-waitWeblink.btn,
+.admwswp-btn.admwswp-waitWeblink.btn:hover {
+  background-color: #6c757d;
+  cursor: default;
+}
+
+.admwswp-btn {
   cursor: pointer;
+}
+
+.admwpp-action .admwswp-btn.admwswp-loading {
+  position: relative;
+  padding-right: 25px;
+}
+
+.admwswp-btn.admwswp-loading .admwswp-loader {
+  display: block;
+  visibility: visible;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 15px;
 }
 
 .weblink-Basket-container .fas {
   font-size: 25px
+}
+
+.admwswp-dialog {
+  border: 0px;
+}
+
+.admwswp-dialog .ui-dialog-titlebar {
+  border: 0px;
+  border-bottom: 1px solid black;
+  border-radius: 0px;
+  height: 2em;
+}
+
+.admwswp-dialog .ui-dialog-titlebar .ui-dialog-title {
+  line-height: 1.2em;
+  margin: 0px;
+}
+
+.admwswp-dialog .ui-dialog-titlebar-close {
+  background: none;
+  border: 0px;
+  outline: none;
+}
+
+.admwswp-dialog .ui-dialog-titlebar-close::before {
+  line-height: 1em;
+}
+
+.admwswp-dialog .admwswp-eventRequestPopup .admwswp-loader {
+  display: block;
+  visibility: visible;
+}
+
+.admwswp-dialog .admwswp-eventRequestPopup .training-request-form-container {
+  width: 100%;
+  margin: 0px;
 }
