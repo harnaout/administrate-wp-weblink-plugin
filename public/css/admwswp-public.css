@@ -21,6 +21,20 @@
   cursor: pointer;
 }
 
+.admwpp-action .admwswp-btn.admwswp-loading {
+  position: relative;
+  padding-right: 25px;
+}
+
+.admwswp-btn.admwswp-loading .admwswp-loader {
+  display: block;
+  visibility: visible;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 15px;
+}
+
 .weblink-Basket-container .fas {
   font-size: 25px
 }

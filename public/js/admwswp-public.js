@@ -35,15 +35,30 @@ jQuery(function($) {
 			return;
 		}
 
+		var timeout = 3000;
+		var loadingClass = 'admwswp-loading';
+
+		if (element.hasClass(loadingClass)) {
+			return;
+		}
+
+    element.addClass(loadingClass);
+
 		var pathId = element.data('path_id');
 		if (pathId) {
 			weblink.stores.STORE_PATH_PICKER.setPathId(pathId);
-			weblink.stores.STORE_DETAILS.openAddPathToCart();
+			setTimeout(()=>{
+				weblink.stores.STORE_DETAILS.openAddPathToCart();
+				element.removeClass(loadingClass);
+			}, timeout);
 		}
 		var courseId = element.data('course_id');
 		if (courseId) {
 			weblink.stores.STORE_EVENT_PICKER.setCourseId(courseId);
-			weblink.stores.STORE_DETAILS.openAddToCart();
+			setTimeout(()=>{
+				weblink.stores.STORE_DETAILS.openAddToCart();
+				element.removeClass(loadingClass);
+			}, timeout);
 		}
 
 	}

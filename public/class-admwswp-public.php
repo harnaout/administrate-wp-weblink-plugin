@@ -82,6 +82,9 @@ class Admwswp_Public
 
         $html = "<div class='admwswp-btn admwswp-addToCart admwswp-waitWeblink $class' $data>";
         $html .= __('Add to Cart', 'admwswp');
+        $html .= "<div class='admwswp-loader fa-3x text-center'>
+                    <i class='fas fa-circle-notch fa-spin'></i>
+                </div>";
         $html .= "</div>";
         return $html;
     }
