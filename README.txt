@@ -5,16 +5,16 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Adminsitrate Wordpress Plugin to facilitate the usage of weblink 2 widgets.
+Adminsitrate Wordpress Plugin to facilitate the usage of weblink 2.0 widgets.
 
 == Description ==
 
-Adminsitrate Wordpress Plugin to facilitate the usage of weblink 2 widgets.
-The plugin exposes weblink functionality into WordPress short-codes, also it creates a Gutenberg block to customize / inject short-codes in the posts content.
+Adminsitrate Wordpress Plugin to facilitate the usage of weblink 2.0 widgets.
+The plugin exposes weblink functionality into WordPress short-codes, also it creates a Gutenberg block to customize / inject short-codes in the posts content. This allows you to easly embed Weblink Widgets in WordPress.
 
 == Installation ==
 
-The plugin is not released on wordpress.org yet, so if you need to use it please contact Adminitrate by sending us en email at support@getadministrate.com and we will send you the files needed to install the plugin.
+Please reach ouy to our team at support@getadministrate.com and we will send you the latest files needed to install the plugin.
 
 Steps:
 
